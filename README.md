@@ -64,13 +64,23 @@ the Rails `turbo_native_app?` + request-variant setup.
 - `references/path-config-guide.md` — schema (verified against native.hotwired.dev),
   bundled-vs-remote, tab-switch-via-redirect, and the server variant setup.
 
+### ✅ `rails-token-auth` — built
+Secure DB-backed token session auth (web + Action Cable + Hotwire Native), no gem.
+- `templates/` — `AppSession` (token hashed at rest), `User::Authentication`
+  (`authenticate_by`), `Current`, the secure-by-default `Authenticate` concern, and
+  `SessionsController`. Generic, ready to adapt.
+- `scripts/audit_token_auth.sh` — security audit for the six properties (timing-safe
+  login, token digest, encrypted cookie, secure-by-default, server-side logout,
+  password storage). Verified: passes the secure Piazza app, flags a synthetic
+  insecure one on every check.
+- `references/token-auth-guide.md` — design + rationale + the anti-patterns.
+
 ### Roadmap — specced, not yet built
 Each is backed by a code-grounded analysis note in the app repos
 (`*/wip/analysis/`); building them means turning a note into templates + scripts.
 
 | Skill | What it would do | Source note |
 |---|---|---|
-| `rails-token-auth` | `AppSession` DB-backed token auth (one auth for web + Action Cable + native), `Current` attributes, the **controller-concern test harness** | `piazza-web/wip/analysis/06` |
 | `turbo-streams-patterns` | The **targeted**-stream patterns: stream-inside-frame patch, custom `switch_class` action, model→Action Cable append/replace, signed per-user streams, Kredis counters (complements the morph-refresh model in `turbo-morphing`) | `piazza-web/wip/analysis/02`, `07` |
 | `stimulus-patterns` | Target-connected self-wiring, Values/Classes API, `disconnect()` cleanup, server-template cloning | `piazza-web/wip/analysis/03` |
 

@@ -1,0 +1,7 @@
+# app/models/current.rb
+#
+# Request-scoped state. Set in the Authenticate concern; auto-reset between requests
+# so nothing leaks across them. Read it anywhere instead of threading current_user.
+class Current < ActiveSupport::CurrentAttributes
+  attribute :user, :app_session, :organization
+end

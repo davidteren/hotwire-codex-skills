@@ -1,0 +1,27 @@
+# app/models/app_session.rb
+#
+# A DB-backed, revocable session. One row per login/device. The token is stored as
+# a bcrypt DIGEST (token_digest column) — the plaintext token exists only long enough
+# to be placed in the client's encrypted cookie. A database leak never yields a
+# usable token.
+#
+# Migration:
+#   create_table :app_sessions do |t|
+#     t.references :user, null: false, foreign_key: true
+#     t.string :token_digest, null: false
+#     t.timestamps
+#   end
+class AppSession < ApplicationRecord
+  belongs_to :user
+
+  # Hashes the token into token_digest; provides authenticate_token(plaintext).
+  has_secure_password :token, validations: false
+
+  before_create { self.token = self.class.generate_unique_secure_token }
+
+  # The trio the client stores (in an ENCRYPTED cookie). `token` here is the
+  # plaintext, available only on the instance that just generated it.
+  def to_h
+    { user_id: user.id, app_session: id, token: token }
+  end
+end

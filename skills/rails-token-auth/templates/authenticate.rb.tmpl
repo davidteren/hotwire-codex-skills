@@ -1,0 +1,72 @@
+# app/controllers/concerns/authenticate.rb
+#
+# Secure-by-default authentication. Including this makes EVERY action require a
+# logged-in user unless the controller explicitly opts out with skip_authentication
+# (fully public) or allow_unauthenticated (runs auth, but doesn't force login).
+#
+# Include it once in ApplicationController so a forgotten controller is locked, not
+# accidentally public.
+module Authenticate
+  extend ActiveSupport::Concern
+
+  included do
+    before_action :authenticate
+    before_action :require_login, unless: :logged_in?
+    helper_method :logged_in?
+  end
+
+  class_methods do
+    def skip_authentication(**options)
+      skip_before_action :authenticate, options
+      skip_before_action :require_login, options
+    end
+
+    def allow_unauthenticated(**options)
+      skip_before_action :require_login, options
+    end
+  end
+
+  protected
+    def logged_in?
+      Current.user.present?
+    end
+
+    # Confidential + tamper-proof: the session trio lives in an ENCRYPTED cookie.
+    def log_in(app_session)
+      cookies.encrypted.permanent[:app_session] = { value: app_session.to_h }
+    end
+
+    # Real logout: destroy the server-side record so the token is dead immediately.
+    def log_out
+      Current.app_session&.destroy
+      cookies.delete(:app_session)
+    end
+
+  private
+    def require_login
+      if request.get?
+        flash.now[:notice] = t("login_required")
+        render "sessions/new", status: :unauthorized
+      else
+        flash[:notice] = t("login_required")
+        redirect_to login_path, status: :see_other
+      end
+    end
+
+    def authenticate
+      Current.app_session = authenticate_using_cookie
+      Current.user = Current.app_session&.user
+    end
+
+    def authenticate_using_cookie
+      data = cookies.encrypted[:app_session]
+      authenticate_using(data&.with_indifferent_access)
+    end
+
+    def authenticate_using(data)
+      data => { user_id:, app_session:, token: }   # raises if shape is wrong
+      User.find(user_id).authenticate_app_session(app_session, token)
+    rescue NoMatchingPatternError, ActiveRecord::RecordNotFound
+      nil
+    end
+end

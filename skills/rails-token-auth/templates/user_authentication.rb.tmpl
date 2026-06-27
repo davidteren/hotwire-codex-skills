@@ -1,0 +1,33 @@
+# app/models/user/authentication.rb  (include into User: `include User::Authentication`)
+#
+# Password auth (bcrypt) + minting/verifying AppSessions. Uses authenticate_by,
+# which is timing-safe: it performs the password hash work regardless of whether
+# the email exists, so response timing can't be used to enumerate accounts.
+module User::Authentication
+  extend ActiveSupport::Concern
+
+  included do
+    has_secure_password
+    validates :password,
+      on: [:create, :password_change],
+      presence: true,
+      length: { minimum: 8 }
+
+    has_many :app_sessions, dependent: :destroy
+  end
+
+  class_methods do
+    # Returns a fresh AppSession on success, nil on bad credentials.
+    def create_app_session(email:, password:)
+      user = authenticate_by(email: email, password: password) # timing-safe (Rails 7.1+)
+      user&.app_sessions&.create
+    end
+  end
+
+  # Verifies a (session id, plaintext token) pair against the hashed token.
+  def authenticate_app_session(app_session_id, token)
+    app_sessions.find(app_session_id).authenticate_token(token)
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+end
