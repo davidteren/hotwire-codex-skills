@@ -1,0 +1,32 @@
+skills/turbo-streams-patterns/templates/custom_stream_action.js.tmpl
+  s_1332f17e3a16ff::t_82a368907ce1b0 1-17
+skills/turbo-streams-patterns/templates/custom_stream_action_helper.rb.tmpl
+  s_1332f17e3a16ff::t_e9f7c46685b6e2 1-14
+skills/turbo-streams-patterns/templates/authorized_channel.rb.tmpl
+  s_1332f17e3a16ff::t_f2f8868bda67f1 1-35
+skills/turbo-streams-patterns/references/turbo-streams-guide.md
+  s_1332f17e3a16ff::t_6108d8a308dd79 1-116
+skills/turbo-streams-patterns/scripts/lint_turbo_streams.sh
+  s_1332f17e3a16ff::t_1355438eb6af8e 1-23,30-76
+  s_1332f17e3a16ff::t_f2fa153f15de4f 24-29
+skills/turbo-streams-patterns/SKILL.md
+  s_1332f17e3a16ff::t_6cd1075ba6ec88 1-53
+README.md
+  s_1332f17e3a16ff::t_2e8136f002c93e 78-89
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "fca1ad45bfbf721e781f3d5e7da03c7be1facb55",
+  "prompts": {},
+  "sessions": {
+    "s_1332f17e3a16ff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e5c36af-7264-4a48-a91a-d07f12dd87f9",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
