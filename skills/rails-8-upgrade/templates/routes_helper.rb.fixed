@@ -1,0 +1,28 @@
+# Rails 8-safe version of the "append test-only routes" helper.
+# Put this in test/support/ and call draw_test_routes in setup, reload_routes! in teardown.
+#
+# Why each line matters (Rails 8 LazyRouteSet):
+#  1. reload_routes_unless_loaded FIRST, flag still false → app routes fully
+#     materialize + finalize before we append (else the lazy reload fired inside
+#     `draw` inherits the flag and drops named helpers like root_path/login_path).
+#  2. set the flag, draw the test routes, then reset it in `ensure` (never stuck).
+#  3. reload_routes! forces the flag false before reloading.
+module RoutesHelpers
+  def draw_test_routes(&block)
+    Rails.application.reload_routes_unless_loaded
+    Rails.application.routes.disable_clear_and_finalize = true
+
+    Rails.application.routes.draw do
+      scope "test" do
+        instance_exec(&block)
+      end
+    end
+  ensure
+    Rails.application.routes.disable_clear_and_finalize = false
+  end
+
+  def reload_routes!
+    Rails.application.routes.disable_clear_and_finalize = false
+    Rails.application.reload_routes!
+  end
+end

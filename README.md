@@ -24,13 +24,23 @@ Create and validate **Strada / Hotwire Native bridge components** across web
   validated by catching Piazza's real `icon`-dropped-on-Android divergence).
 - `references/bridge-contract.md` — the contract + the worked `nav-menu` example.
 
+### ✅ `rails-8-upgrade` — built
+Upgrade a Rails 7 app to Rails 8 safely + catch the flake it introduces.
+- `scripts/upgrade_audit.sh` — read-only pre-flight: versions (+ Gemfile.lock RUBY
+  mismatch), `load_defaults` vs Rails major, known-risky gems (pagy <6 with custom
+  views), and whether the test suite uses the flaky route pattern.
+- `scripts/lint_route_test_helper.sh` — detects the **`draw_test_routes` /
+  LazyRouteSet** parallel-test flake (materialize-before-flag, flag reset, the
+  `finalize!` dead-end, missing `reload_routes!` teardowns) and prints the fix.
+  Verified: clean on the fixed `piazza-web`, flags a synthetic book-original helper.
+- `templates/routes_helper.rb.fixed` + `references/rails-7-to-8.md` (the checklist).
+
 ### Roadmap — specced, not yet built
 Each is backed by a code-grounded analysis note in the app repos
 (`*/wip/analysis/`); building them means turning a note into templates + scripts.
 
 | Skill | What it would do | Source note |
 |---|---|---|
-| `rails-8-upgrade` | 7→8 checklist + lints; ships the **`draw_test_routes` / LazyRouteSet** flake fix (materialize-before-flag) as a codemod; pagy-major + `load_defaults` flip guidance | `piazza-web/wip/analysis/01` |
 | `hotwire-native-path-config` | Scaffold + validate `path_configuration.json`; the `turbo_native_app?` detection + request-variant server setup; tab-switch-via-redirect | `piazza-web/wip/analysis/05`, `piazza-ios/wip/analysis/00`, `piazza-android/wip/analysis/00` |
 | `rails-token-auth` | `AppSession` DB-backed token auth (one auth for web + Action Cable + native), `Current` attributes, the **controller-concern test harness** | `piazza-web/wip/analysis/06` |
 | `turbo-streams-patterns` | The stream-inside-frame patch, custom `switch_class` action, model→Action Cable broadcasting, signed per-user streams, Kredis counters | `piazza-web/wip/analysis/02`, `07` |
