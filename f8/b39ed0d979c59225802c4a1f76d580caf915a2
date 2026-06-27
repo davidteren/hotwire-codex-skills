@@ -1,0 +1,26 @@
+skills/turbo-morphing/SKILL.md
+  s_1332f17e3a16ff::t_6b18a74a4b8c5f 1-74
+skills/turbo-morphing/references/morphing-guide.md
+  s_1332f17e3a16ff::t_1ce80d8c6b2ecc 1-73
+README.md
+  s_1332f17e3a16ff::t_2cabe2ba6c7890 38-49,58
+skills/turbo-morphing/scripts/lint_morphing.sh
+  s_1332f17e3a16ff::t_739e7b699ef9dd 1-22,24-28,30-38,42,48,56,59-81
+  s_1332f17e3a16ff::t_49c39602cba07d 23,29,39-41,43-47,49-55,57-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "f8b39ed0d979c59225802c4a1f76d580caf915a2",
+  "prompts": {},
+  "sessions": {
+    "s_1332f17e3a16ff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e5c36af-7264-4a48-a91a-d07f12dd87f9",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
