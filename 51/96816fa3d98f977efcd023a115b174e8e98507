@@ -1,0 +1,30 @@
+skills/rails-8-upgrade/scripts/lint_route_test_helper.sh
+  s_1332f17e3a16ff::t_098cd2571a0e7d 1-62,64-78
+  s_1332f17e3a16ff::t_a22f784c033c78 63
+skills/rails-8-upgrade/templates/routes_helper.rb.fixed
+  s_1332f17e3a16ff::t_e1463bad2748d5 1-28
+skills/rails-8-upgrade/scripts/upgrade_audit.sh
+  s_1332f17e3a16ff::t_d9cc9c398bf5dd 1-64
+skills/rails-8-upgrade/references/rails-7-to-8.md
+  s_1332f17e3a16ff::t_ad13491e1d99c2 1-67
+skills/rails-8-upgrade/SKILL.md
+  s_1332f17e3a16ff::t_b20588bbd91eaf 1-71
+README.md
+  s_1332f17e3a16ff::t_35a8377de7ec7f 27-37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "5196816fa3d98f977efcd023a115b174e8e98507",
+  "prompts": {},
+  "sessions": {
+    "s_1332f17e3a16ff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e5c36af-7264-4a48-a91a-d07f12dd87f9",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
