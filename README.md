@@ -75,13 +75,24 @@ Secure DB-backed token session auth (web + Action Cable + Hotwire Native), no ge
   insecure one on every check.
 - `references/token-auth-guide.md` — design + rationale + the anti-patterns.
 
+### ✅ `turbo-streams-patterns` — built
+The targeted-stream complement to `turbo-morphing`: model broadcasts, custom stream
+actions, **authorized** stream channels, Kredis presence.
+- `templates/` — a custom stream action (JS + Ruby `TagBuilder.prepend` halves) and an
+  authorized channel (verify signed name → authorize → `reject`).
+- `scripts/lint_turbo_streams.sh` — flags half-wired custom actions, **channels that
+  `stream_from` without authorizing the subscriber** (eavesdropping, reported as an
+  error), and `broadcast_*_later` without a job backend. Verified: clean on Piazza,
+  flags a synthetic leaky-channel + half-wired app.
+- `references/turbo-streams-guide.md` — the five patterns + the morph-vs-targeted
+  decision + the stream-auth security note.
+
 ### Roadmap — specced, not yet built
 Each is backed by a code-grounded analysis note in the app repos
 (`*/wip/analysis/`); building them means turning a note into templates + scripts.
 
 | Skill | What it would do | Source note |
 |---|---|---|
-| `turbo-streams-patterns` | The **targeted**-stream patterns: stream-inside-frame patch, custom `switch_class` action, model→Action Cable append/replace, signed per-user streams, Kredis counters (complements the morph-refresh model in `turbo-morphing`) | `piazza-web/wip/analysis/02`, `07` |
 | `stimulus-patterns` | Target-connected self-wiring, Values/Classes API, `disconnect()` cleanup, server-template cloning | `piazza-web/wip/analysis/03` |
 
 ## Layout

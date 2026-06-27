@@ -1,0 +1,17 @@
+// app/javascript/stream_actions/__ACTION__.js
+//
+// Client half of the custom Turbo Stream action "__ACTION__".
+// `this` is the <turbo-stream> element, so you get this.getAttribute(...),
+// this.targetElements (the elements matched by target=/targets=), etc.
+// Register it (import this file) from app/javascript/stream_actions/index.js,
+// which your application entrypoint imports.
+import { StreamActions } from "@hotwired/turbo"
+
+StreamActions.__ACTION__ = function() {
+  const value = this.getAttribute("__ATTR__")
+
+  this.targetElements.forEach(element => {
+    // TODO: act on each matched element using `value`.
+    // e.g. element.classList.add(value)
+  })
+}

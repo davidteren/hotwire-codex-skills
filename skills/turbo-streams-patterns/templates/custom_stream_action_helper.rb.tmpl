@@ -1,0 +1,14 @@
+# app/helpers/turbo_stream_actions_helper.rb
+#
+# Server half of custom Turbo Stream actions. Prepending onto the TagBuilder lets you
+# call turbo_stream.__ACTION__(target, value) from controllers, views, and model
+# broadcasts — emitting <turbo-stream action="__ACTION__" target=... __ATTR__=...>.
+# Every action you add here MUST have a matching StreamActions.__ACTION__ in JS, or
+# the client receives a tag it can't run.
+module TurboStreamActionsHelper
+  def __ACTION__(target, value)
+    turbo_stream_action_tag(:__ACTION__, target: target, __ATTR__: value)
+  end
+end
+
+Turbo::Streams::TagBuilder.prepend(TurboStreamActionsHelper)

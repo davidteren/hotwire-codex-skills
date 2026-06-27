@@ -1,0 +1,35 @@
+# app/channels/__THING___channel.rb
+#
+# A Turbo Streams channel that AUTHORIZES the subscriber before streaming. This is a
+# security boundary: turbo_stream_from signs the stream name, but signing only proves
+# the name wasn't tampered with — it does NOT prove THIS user is allowed to receive
+# that record's broadcasts. Without the check below, anyone with a valid signed name
+# (e.g. copied from another page) could subscribe and eavesdrop on the broadcasts.
+class __THING__Channel < ApplicationCable::Channel
+  extend Turbo::Streams::StreamName
+  include Turbo::Streams::StreamName::ClassMethods
+
+  def subscribed
+    if record && authorized?(record)
+      stream_from stream_name
+    else
+      reject
+    end
+  end
+
+  private
+    # The signed stream name from turbo_stream_from(record, channel: "__THING__Channel").
+    def stream_name
+      @stream_name ||= verified_stream_name_from_params
+    end
+
+    # The record the stream name points at (Turbo signs a GlobalID).
+    def record
+      @record ||= GlobalID::Locator.locate(stream_name)
+    end
+
+    # TODO: real authorization — does the current connection's user/org own this record?
+    def authorized?(record)
+      record.respond_to?(:accessible_to?) ? record.accessible_to?(current_user) : false
+    end
+end
