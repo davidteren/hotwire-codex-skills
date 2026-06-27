@@ -35,6 +35,18 @@ Upgrade a Rails 7 app to Rails 8 safely + catch the flake it introduces.
   Verified: clean on the fixed `piazza-web`, flags a synthetic book-original helper.
 - `templates/routes_helper.rb.fixed` + `references/rails-7-to-8.md` (the checklist).
 
+### ✅ `turbo-morphing` — built
+Turbo 8 page refreshes with morphing + broadcast refreshes, done right.
+- `references/morphing-guide.md` — `turbo_refreshes_with`, `data-turbo-permanent`,
+  frame `refresh="morph"`, `broadcasts_refreshes` mechanics (debounce, request-id
+  dedup, BroadcastJob), scoped morph, and the decision guide (morph-refresh vs
+  targeted streams vs frames). Verified against the Turbo handbook + turbo-rails source.
+- `scripts/lint_morphing.sh` — morph-readiness check: flags global (layout) morph,
+  stateful widgets (`<details>`/`<dialog>`/Stimulus) in morph scope without a
+  `data-turbo-permanent` / `before-morph` guard, and async broadcasts lacking a job
+  backend. Verified: scopes correctly per-view vs global, honours guards.
+- Keeps the suite current with modern Hotwire — see `piazza-web/wip/analysis/08`.
+
 ### Roadmap — specced, not yet built
 Each is backed by a code-grounded analysis note in the app repos
 (`*/wip/analysis/`); building them means turning a note into templates + scripts.
@@ -43,7 +55,7 @@ Each is backed by a code-grounded analysis note in the app repos
 |---|---|---|
 | `hotwire-native-path-config` | Scaffold + validate `path_configuration.json`; the `turbo_native_app?` detection + request-variant server setup; tab-switch-via-redirect | `piazza-web/wip/analysis/05`, `piazza-ios/wip/analysis/00`, `piazza-android/wip/analysis/00` |
 | `rails-token-auth` | `AppSession` DB-backed token auth (one auth for web + Action Cable + native), `Current` attributes, the **controller-concern test harness** | `piazza-web/wip/analysis/06` |
-| `turbo-streams-patterns` | The stream-inside-frame patch, custom `switch_class` action, model→Action Cable broadcasting, signed per-user streams, Kredis counters | `piazza-web/wip/analysis/02`, `07` |
+| `turbo-streams-patterns` | The **targeted**-stream patterns: stream-inside-frame patch, custom `switch_class` action, model→Action Cable append/replace, signed per-user streams, Kredis counters (complements the morph-refresh model in `turbo-morphing`) | `piazza-web/wip/analysis/02`, `07` |
 | `stimulus-patterns` | Target-connected self-wiring, Values/Classes API, `disconnect()` cleanup, server-template cloning | `piazza-web/wip/analysis/03` |
 
 ## Layout
