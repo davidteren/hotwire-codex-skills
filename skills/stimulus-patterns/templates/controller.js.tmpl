@@ -1,0 +1,30 @@
+import { Controller } from "@hotwired/stimulus"
+
+// data-controller="__NAME__"
+// Register it (manifest index.js or stimulus-loading) or it never connects.
+//
+// Markup wiring:
+//   <div data-controller="__NAME__" data-__NAME__-greeting-value="Hi">
+//     <input data-__NAME__-target="field">
+//     <button data-action="__NAME__#submit">Go</button>
+//   </div>
+export default class extends Controller {
+  static targets = [ "field" ]                 // → this.fieldTarget / fieldTargets / hasFieldTarget
+  static values  = { greeting: String }        // → this.greetingValue (config from the server)
+  static classes = [ "active" ]                // → this.activeClass(es) (CSS lives in the view)
+
+  connect() {
+    // Set up. If you add a listener/timer/observer here that Stimulus doesn't manage
+    // (window/document listeners, setInterval, MutationObserver…), undo it in
+    // disconnect() — otherwise it leaks and double-fires after Turbo navigation.
+  }
+
+  disconnect() {
+    // Tear down whatever connect() set up. (data-action listeners are auto-managed.)
+  }
+
+  submit() {
+    // Prefer reacting to DOM state over storing state in the controller.
+    this.fieldTarget.classList.add(this.activeClass)
+  }
+}

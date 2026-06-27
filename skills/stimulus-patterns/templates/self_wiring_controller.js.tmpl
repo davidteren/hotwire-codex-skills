@@ -1,0 +1,25 @@
+import { Controller } from "@hotwired/stimulus"
+
+// data-controller="__NAME__"
+// Self-wiring pattern: elements that arrive LATER (a Turbo Stream append, a frame
+// load) wire themselves via the per-element xTargetConnected callback — no re-query
+// in connect(), no MutationObserver. Each matched target fires the callback as it
+// connects, and xTargetDisconnected as it leaves.
+//
+//   <div data-controller="__NAME__" data-__NAME__-active-class="is-highlighted">
+//     <!-- streamed in over time -->
+//     <div data-__NAME__-target="item">…</div>
+//   </div>
+export default class extends Controller {
+  static targets = [ "item" ]
+  static classes = [ "active" ]
+
+  itemTargetConnected(target) {
+    // Runs once per item, the moment it connects (including streamed-in ones).
+    target.classList.add(...this.activeClasses)
+  }
+
+  itemTargetDisconnected(target) {
+    // Symmetric cleanup if you registered anything per item.
+  }
+}

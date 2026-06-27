@@ -87,13 +87,17 @@ actions, **authorized** stream channels, Kredis presence.
 - `references/turbo-streams-guide.md` — the five patterns + the morph-vs-targeted
   decision + the stream-auth security note.
 
-### Roadmap — specced, not yet built
-Each is backed by a code-grounded analysis note in the app repos
-(`*/wip/analysis/`); building them means turning a note into templates + scripts.
+### ✅ `stimulus-patterns` — built
+Small, Turbo-safe, server-driven Stimulus controllers.
+- `templates/` — an annotated controller starter and a self-wiring
+  (`xTargetConnected`) example.
+- `scripts/lint_stimulus.sh` — flags `this.xTarget`/`Value`/`Class` used but not
+  declared (runtime errors), `connect()` listeners/timers/observers with no
+  `disconnect()` (leak/double-fire), and controllers missing from the `index.js`
+  manifest. Verified: clean on all 7 Piazza controllers, flags a synthetic broken one.
+- `references/stimulus-guide.md` — the six patterns, grounded in the Piazza controllers.
 
-| Skill | What it would do | Source note |
-|---|---|---|
-| `stimulus-patterns` | Target-connected self-wiring, Values/Classes API, `disconnect()` cleanup, server-template cloning | `piazza-web/wip/analysis/03` |
+_All seven roadmap skills are now built._
 
 ## Layout
 
