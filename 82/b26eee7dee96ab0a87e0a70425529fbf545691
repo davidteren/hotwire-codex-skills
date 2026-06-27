@@ -1,0 +1,36 @@
+skills/rails-token-auth/templates/authenticate.rb.tmpl
+  s_1332f17e3a16ff::t_815aba63dc020e 1-72
+skills/rails-token-auth/SKILL.md
+  s_1332f17e3a16ff::t_49725ff303ed0f 1-63
+skills/rails-token-auth/templates/app_session.rb.tmpl
+  s_1332f17e3a16ff::t_d7c62e8cd39fa1 1-27
+skills/rails-token-auth/templates/sessions_controller.rb.tmpl
+  s_1332f17e3a16ff::t_733c3b68bfdbac 1-37
+skills/rails-token-auth/templates/current.rb.tmpl
+  s_1332f17e3a16ff::t_15238b034f3216 1-7
+skills/rails-token-auth/scripts/audit_token_auth.sh
+  s_1332f17e3a16ff::t_510a8080941b13 39-40
+  s_1332f17e3a16ff::t_16a1a7a08acca9 1-38,41-87
+README.md
+  s_1332f17e3a16ff::t_b72691c4abedb8 67-77
+skills/rails-token-auth/templates/user_authentication.rb.tmpl
+  s_1332f17e3a16ff::t_25930655987ef6 1-33
+skills/rails-token-auth/references/token-auth-guide.md
+  s_1332f17e3a16ff::t_c0013066e467f2 1-92
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "82b26eee7dee96ab0a87e0a70425529fbf545691",
+  "prompts": {},
+  "sessions": {
+    "s_1332f17e3a16ff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e5c36af-7264-4a48-a91a-d07f12dd87f9",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
