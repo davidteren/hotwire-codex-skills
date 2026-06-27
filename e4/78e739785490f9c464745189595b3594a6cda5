@@ -1,0 +1,21 @@
+.gitignore
+  s_1332f17e3a16ff::t_c3ca46bf805804 1-2
+skills/hotwire-native-bridge/scripts/new_bridge_component.sh
+  s_1332f17e3a16ff::t_42c04acb849116 1-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "e478e739785490f9c464745189595b3594a6cda5",
+  "prompts": {},
+  "sessions": {
+    "s_1332f17e3a16ff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e5c36af-7264-4a48-a91a-d07f12dd87f9",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
