@@ -51,13 +51,25 @@ Turbo 8 page refreshes with morphing + broadcast refreshes, done right.
   backend. Verified: scopes correctly per-view vs global, honours guards.
 - Keeps the suite current with modern Hotwire — see `piazza-web/wip/analysis/08`.
 
+### ✅ `hotwire-native-path-config` — built
+Author + validate the path configuration JSON that drives native navigation, plus
+the Rails `turbo_native_app?` + request-variant setup.
+- `templates/path_configuration.json.tmpl` — a 1.x starter (catch-all → tabs → modal
+  → image viewer).
+- `scripts/lint_path_config.sh` — schema + footgun validator (regex compile, 1.x
+  property/value check, `presentation: "modal"` beta-ism, unanchored patterns,
+  catch-all ordering) and an iOS↔Android `--compare` drift check. Verified: template
+  clean, flags the Piazza iOS modal beta-ism, surfaces the real iOS↔Android gap
+  (Android handles image URLs, iOS doesn't).
+- `references/path-config-guide.md` — schema (verified against native.hotwired.dev),
+  bundled-vs-remote, tab-switch-via-redirect, and the server variant setup.
+
 ### Roadmap — specced, not yet built
 Each is backed by a code-grounded analysis note in the app repos
 (`*/wip/analysis/`); building them means turning a note into templates + scripts.
 
 | Skill | What it would do | Source note |
 |---|---|---|
-| `hotwire-native-path-config` | Scaffold + validate `path_configuration.json`; the `turbo_native_app?` detection + request-variant server setup; tab-switch-via-redirect | `piazza-web/wip/analysis/05`, `piazza-ios/wip/analysis/00`, `piazza-android/wip/analysis/00` |
 | `rails-token-auth` | `AppSession` DB-backed token auth (one auth for web + Action Cable + native), `Current` attributes, the **controller-concern test harness** | `piazza-web/wip/analysis/06` |
 | `turbo-streams-patterns` | The **targeted**-stream patterns: stream-inside-frame patch, custom `switch_class` action, model→Action Cable append/replace, signed per-user streams, Kredis counters (complements the morph-refresh model in `turbo-morphing`) | `piazza-web/wip/analysis/02`, `07` |
 | `stimulus-patterns` | Target-connected self-wiring, Values/Classes API, `disconnect()` cleanup, server-template cloning | `piazza-web/wip/analysis/03` |

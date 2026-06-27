@@ -1,0 +1,52 @@
+{
+  "settings": {
+    "screenshots_enabled": true
+  },
+  "rules": [
+    {
+      "patterns": [
+        "/.*"
+      ],
+      "properties": {
+        "context": "default",
+        "presentation": "default",
+        "uri": "__SCHEME__://fragment/web",
+        "pull_to_refresh_enabled": true
+      }
+    },
+    {
+      "patterns": [
+        "^/$",
+        "/profile$",
+        "/my_listings$",
+        "/saved_listings$",
+        "/conversations$"
+      ],
+      "properties": {
+        "context": "default",
+        "presentation": "replace_root",
+        "uri": "__SCHEME__://fragment/web/tab"
+      }
+    },
+    {
+      "patterns": [
+        "/new$",
+        "/edit$",
+        "/login$",
+        "/sign_up$"
+      ],
+      "properties": {
+        "context": "modal",
+        "uri": "__SCHEME__://fragment/web/modal"
+      }
+    },
+    {
+      "patterns": [
+        ".+\\.(?:bmp|gif|heic|jpg|jpeg|png|svg|webp)$"
+      ],
+      "properties": {
+        "uri": "__SCHEME__://fragment/image_viewer"
+      }
+    }
+  ]
+}
