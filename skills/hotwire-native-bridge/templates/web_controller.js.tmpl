@@ -1,40 +1,46 @@
-import { BridgeComponent, BridgeElement } from "@hotwired/strada"
+import { BridgeComponent, BridgeElement } from "@hotwired/hotwire-native-bridge"
 
-// Web half of the "__COMPONENT_NAME__" Strada bridge component.
+// Web half of the "__COMPONENT_NAME__" bridge component (Hotwire Native 1.x).
 // File: app/javascript/controllers/bridge/__SNAKE_NAME___controller.js
-// Stimulus identifier: bridge--__COMPONENT_NAME__
-// The `component` string below is the CONTRACT — it must match the iOS
-// (override class var name) and Android (BridgeComponentFactory) sides byte-for-byte.
+// Stimulus identifier (when placed under controllers/bridge/): bridge--__COMPONENT_NAME__
+// `static component` is the CONTRACT — must match the iOS (override class var name)
+// and Android (BridgeComponentFactory) sides byte-for-byte.
+//
+// Hotwire Native 1.x note: bridge JS now ships in @hotwired/hotwire-native-bridge
+// (formerly @hotwired/strada). Install it on the server; see
+// https://native.hotwired.dev/reference/bridge-installation
 export default class extends BridgeComponent {
   static component = "__COMPONENT_NAME__"
   static targets = [ "item" ]
 
   connect() {
-    // When running inside a native app, hide the web fallback UI and hand the
-    // data to the native side. On plain web (no bridge), connect() never runs.
+    super.connect() // required in 1.x so the component registers with the bridge
+
+    // Hide the web fallback UI and hand the data to native. On plain web (no
+    // bridge connected) connect() still runs but send() is a no-op.
     this.element.classList.add("is-hidden")
 
     const items =
-      this.itemTargets
-        .map(item => new BridgeElement(item))
-        .map((item, index) => ({
+      this.itemTargets.map((element, index) => {
+        const item = new BridgeElement(element)
+        return {
           title: item.title,
           // Keep this payload shape identical across web/iOS/Android. Any key you
-          // add here must be decoded on BOTH native sides or it is silently dropped.
+          // add must be decoded on BOTH native sides or it is silently dropped.
           icon: item.bridgeAttribute("icon"),
           index
-        }))
+        }
+      })
 
     this.send("connect", { items }, message => {
       const selectedIndex = message.data.selectedIndex
-      const selectedItem = new BridgeElement(this.itemTargets[selectedIndex])
-      selectedItem.click()
+      new BridgeElement(this.itemTargets[selectedIndex]).click()
     })
   }
 
   disconnect() {
-    // Tell native to tear down anything it rendered, so it doesn't duplicate on
-    // the next Turbo navigation. Pairs with the native disconnect handler.
+    // Tell native to tear down what it rendered, so it doesn't duplicate on the
+    // next Turbo navigation. Pairs with the native disconnect handler.
     this.send("disconnect")
   }
 }

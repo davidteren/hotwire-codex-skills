@@ -96,5 +96,23 @@ if [ -n "$oa" ]; then for x in $oa; do warn "field '$x' decoded on Android but n
 [ -z "$oi$oa" ] && ok "native decoded fields match"
 echo
 
+# --- 5. Library generation (Hotwire Native 1.x vs Strada beta) --------------
+echo "Library generation —"
+gen() { # gen <label> <beta-pattern> <1x-pattern> <dir> <ext>
+  local label="$1" beta="$2" onex="$3" dir="$4" ext="$5" b o
+  b=$(grep -rlE --include="*.$ext" "$beta" "$dir" 2>/dev/null | head -1)
+  o=$(grep -rlE --include="*.$ext" "$onex" "$dir" 2>/dev/null | head -1)
+  if [ -n "$o" ] && [ -z "$b" ]; then echo "  $label: Hotwire Native 1.x"; G1=$((G1+1))
+  elif [ -n "$b" ] && [ -z "$o" ]; then echo "  $label: Strada beta (legacy)"; GB=$((GB+1))
+  elif [ -n "$b" ] && [ -n "$o" ]; then warn "$label: MIXED beta + 1.x imports — finish the migration"
+  else echo "  $label: (bridge lib import not found)"; fi
+}
+G1=0; GB=0
+gen "web    " '@hotwired/strada' '@hotwired/hotwire-native-bridge' "$WEB/app/javascript" js
+gen "ios    " 'import Strada' 'import HotwireNative' "$IOS" swift
+gen "android" 'dev\.hotwire\.strada' 'dev\.hotwire\.core\.bridge' "$ANDROID" kt
+[ "$G1" -gt 0 ] && [ "$GB" -gt 0 ] && warn "platforms split across Hotwire Native 1.x and Strada beta — upgrade them together"
+echo
+
 if [ "$fail" -eq 0 ]; then echo "✅ bridge contract OK"; else echo "❌ bridge contract drift found"; fi
 exit $fail

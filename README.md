@@ -14,9 +14,13 @@ templates + runnable scripts).
 
 ## Skills
 
-### ✅ `hotwire-native-bridge` — built
-Create and validate **Strada / Hotwire Native bridge components** across web
-(Stimulus), iOS (Swift), Android (Kotlin).
+### ✅ `hotwire-native-bridge` — built (Hotwire Native 1.x)
+Create and validate **Hotwire Native bridge components** (formerly Strada) across
+web (Stimulus), iOS (Swift), Android (Kotlin). Templates target **Hotwire Native
+1.x** (`@hotwired/hotwire-native-bridge`, `import HotwireNative`,
+`dev.hotwire.core.bridge`, `Hotwire.registerBridgeComponents`); the reference maps
+1.x ↔ the Strada-beta wiring the Piazza example apps still use, and the linter
+reports each platform's generation.
 - `scripts/new_bridge_component.sh` — generate the three platform halves from one
   component name (consistent name + payload), with the registration steps.
 - `scripts/lint_bridge_contract.sh` — flag name mismatches, unregistered (invisible)

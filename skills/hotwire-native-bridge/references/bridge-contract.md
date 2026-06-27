@@ -69,6 +69,39 @@ exactly what `lint_bridge_contract.sh` flags.
   (`@hotwired/strada`, `strada-ios`, `dev.hotwire:strada`). Hotwire Native 1.x
   folds Strada into the core — the bridge concepts carry over but imports/APIs change.
 
+## Hotwire Native 1.x vs the Piazza baseline (Strada beta)
+
+Bridge Components were formerly called **Strada** components and "work exactly as
+before" — but the framework merged into Hotwire Native 1.x, so imports, the Android
+destination type, and registration changed. The skill's templates target **1.x**;
+the Piazza example repos still use the beta wiring. Migration map:
+
+| Concern | Piazza baseline (Strada beta) | Hotwire Native 1.x |
+|---|---|---|
+| Web package | `@hotwired/strada` | `@hotwired/hotwire-native-bridge` |
+| Web `connect()` | manual | call `super.connect()`; `this.bridgeElement` getter |
+| iOS import / package | `import Strada` (turbo-ios + strada-ios) | `import HotwireNative` (hotwire-native-ios, one dep) |
+| iOS register | `BridgeComponent.allTypes` extension | `Hotwire.registerBridgeComponents([X.self])` in AppDelegate, **before** any `Navigator` |
+| iOS delegate | `delegate.destination` | `delegate?.destination` (optional) |
+| Android package | `dev.hotwire.strada.*` (dev.hotwire:turbo + strada) | `dev.hotwire.core.bridge.*` (dev.hotwire:core) |
+| Android destination | `BridgeComponent<NavDestination>` | `BridgeComponent<HotwireDestination>` |
+| Android register | `bridgeComponentFactories` list → WebFragment | `Hotwire.registerBridgeComponents(BridgeComponentFactory(...))` in `Application` |
+
+The component **bodies** (`onReceive`, `reply`/`replyTo`, `message.data()`,
+`send` + callback) are unchanged across the rename. The cross-platform **contract**
+(name + payload parity) is identical in both eras — so `lint_bridge_contract.sh`
+works regardless of version. Gotcha specific to 1.x iOS: register components before
+the `Navigator` is created or they never attach (hotwire-native-ios #35; addressed
+via a notification in v1.1).
+
+Upgrading the Piazza apps: `piazza-ios` and `piazza-android` ship the beta libs;
+their `wip/analysis/00-*-architecture.md` flag the 1.x port as deferred — this table
+is the migration checklist for it.
+
+Sources (verified): native.hotwired.dev iOS/Android/reference bridge-components +
+bridge-installation; `dev.hotwire.core.bridge` package confirmed from the
+hotwire-native-android source.
+
 ## Source
 
 Real implementations: `piazza-web/app/javascript/controllers/bridge/nav_menu_controller.js`,

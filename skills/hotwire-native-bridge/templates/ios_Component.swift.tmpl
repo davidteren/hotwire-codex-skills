@@ -1,12 +1,19 @@
 import Foundation
 import UIKit
-import Strada
+import HotwireNative
 
-// iOS half of the "__COMPONENT_NAME__" Strada bridge component.
+// iOS half of the "__COMPONENT_NAME__" bridge component (Hotwire Native 1.x).
 // File: <App>/Bridge/__CLASS_NAME__Component.swift
 // `name` is the CONTRACT — must match web (static component) + Android byte-for-byte.
-// After creating this file you MUST register it: add `__CLASS_NAME__Component.self`
-// to BridgeComponent.allTypes (Bridge/BridgeComponent+<App>.swift).
+//
+// Hotwire Native 1.x note: `import HotwireNative` (formerly `import Strada` from the
+// turbo-ios/strada-ios packages — now the single hotwire-native-ios package).
+// Register in AppDelegate BEFORE any Navigator is created:
+//
+//   Hotwire.registerBridgeComponents([ __CLASS_NAME__Component.self ])
+//
+// (Registering after a Navigator exists means the component never attaches to the
+// web view — make the navigator lazy. See hotwire-native-ios issue #35.)
 final class __CLASS_NAME__Component: BridgeComponent {
   override class var name: String { "__COMPONENT_NAME__" }
 
@@ -24,7 +31,7 @@ final class __CLASS_NAME__Component: BridgeComponent {
   private func handleConnect(message: Message) {
     guard let data: MessageData = message.data() else { return }
     // TODO: render native UI from data.items, wiring each control's action to
-    // sendSelectedMessage so the web side learns which item was chosen.
+    // reply(to: "connect", with: ResponseData(selectedIndex:)).
     _ = data
   }
 
@@ -36,8 +43,9 @@ final class __CLASS_NAME__Component: BridgeComponent {
     reply(to: "connect", with: ResponseData(selectedIndex: sender.tag))
   }
 
+  // 1.x: delegate is optional.
   private var viewController: UIViewController? {
-    delegate.destination as? UIViewController
+    delegate?.destination as? UIViewController
   }
 }
 

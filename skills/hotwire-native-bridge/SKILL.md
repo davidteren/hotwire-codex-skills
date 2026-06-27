@@ -45,13 +45,23 @@ Writes (refuses to overwrite):
 - `ios/<App>/Bridge/<Pascal>Component.swift`
 - `android/.../<Pascal>Component.kt`
 
-Then **register** it (the generator prints these — it does NOT edit registries):
-- **iOS:** add `<Pascal>Component.self` to `BridgeComponent.allTypes`
-  (`Bridge/BridgeComponent+<App>.swift`). Missing → component never loads.
-- **Android:** add `BridgeComponentFactory("<name>", ::<Pascal>Component)` to the
-  `bridgeComponentFactories` list (`BridgeComponentFactories.kt`).
-- **Web:** Stimulus auto-registers it as `bridge--<name>` if the file lives under
-  `app/javascript/controllers/bridge/`.
+Then **register** it (the generator prints these — it does NOT edit registries).
+**Hotwire Native 1.x** (default — templates target this):
+- **iOS:** `Hotwire.registerBridgeComponents([<Pascal>Component.self])` in
+  `AppDelegate`, **before any `Navigator` is created** (make the navigator lazy, else
+  the component never attaches — hotwire-native-ios #35). `import HotwireNative`.
+- **Android:** `Hotwire.registerBridgeComponents(BridgeComponentFactory("<name>",
+  ::<Pascal>Component))` in your `Application` subclass (also set
+  `Hotwire.config.jsonConverter = KotlinXJsonConverter()`). Imports from
+  `dev.hotwire.core.bridge`; destination type `HotwireDestination`.
+- **Web:** install `@hotwired/hotwire-native-bridge`; Stimulus auto-registers the
+  controller as `bridge--<name>` if it lives under `app/javascript/controllers/bridge/`.
+
+> **Strada-beta apps** (the Piazza example repos still use this): iOS adds
+> `<Pascal>Component.self` to a `BridgeComponent.allTypes` extension; Android adds the
+> factory to a `bridgeComponentFactories` list passed to the WebFragment; web imports
+> `@hotwired/strada`. Same contract, older wiring. Full mapping:
+> `references/bridge-contract.md`.
 - **Markup:** `data-controller="bridge--<name>"`, item targets
   `data-bridge--<name>-target="item"`, payload attrs via `data-bridge-<attr>`
   (read in JS with `bridgeElement.bridgeAttribute("<attr>")`).

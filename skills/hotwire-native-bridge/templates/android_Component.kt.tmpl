@@ -1,25 +1,29 @@
 package __PACKAGE__
 
 import android.util.Log
-import dev.hotwire.strada.BridgeComponent
-import dev.hotwire.strada.BridgeDelegate
-import dev.hotwire.strada.Message
+import dev.hotwire.core.bridge.BridgeComponent
+import dev.hotwire.core.bridge.BridgeDelegate
+import dev.hotwire.core.bridge.Message
+import dev.hotwire.navigation.destinations.HotwireDestination
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-// Android half of the "__COMPONENT_NAME__" Strada bridge component.
+// Android half of the "__COMPONENT_NAME__" bridge component (Hotwire Native 1.x).
 // File: .../__CLASS_NAME__Component.kt
 // `name` is the CONTRACT — must match web (static component) + iOS byte-for-byte.
-// After creating this file you MUST register it: add
-//   BridgeComponentFactory("__COMPONENT_NAME__", ::__CLASS_NAME__Component)
-// to the bridgeComponentFactories list (BridgeComponentFactories.kt).
+//
+// Hotwire Native 1.x note: bridge classes are now in dev.hotwire.core.bridge
+// (formerly dev.hotwire.strada), the destination type is HotwireDestination
+// (formerly NavDestination), and registration moves to an Application subclass:
+//
+//   Hotwire.registerBridgeComponents(
+//     BridgeComponentFactory("__COMPONENT_NAME__", ::__CLASS_NAME__Component)
+//   )
+//   // also: Hotwire.config.jsonConverter = KotlinXJsonConverter()
 class __CLASS_NAME__Component(
   name: String,
-  private val delegate: BridgeDelegate<NavDestination>
-) : BridgeComponent<NavDestination>(name, delegate) {
-
-  private val fragment: WebFragment
-    get() = delegate.destination.fragment as WebFragment
+  private val delegate: BridgeDelegate<HotwireDestination>
+) : BridgeComponent<HotwireDestination>(name, delegate) {
 
   override fun onReceive(message: Message) {
     when (message.event) {
@@ -46,8 +50,8 @@ class __CLASS_NAME__Component(
   )
 
   // Mirror of the web payload. EVERY key the web sends must appear here or it is
-  // silently dropped (this is the classic web/Android divergence — e.g. an `icon`
-  // field present on web + iOS but missing here). Keep in sync with the JS controller.
+  // silently dropped (the classic web/Android divergence — e.g. an `icon` field
+  // present on web + iOS but missing here). Keep in sync with the JS controller.
   @Serializable
   data class Item(
     @SerialName("title") val title: String,

@@ -84,11 +84,15 @@ cat <<EOF
 
 NEXT — register the component (the generator does NOT edit registries for you):
 
-  iOS  : add  ${PASCAL}Component.self
-         to   BridgeComponent.allTypes  (Bridge/BridgeComponent+<App>.swift)
+  Hotwire Native 1.x:
+  iOS  : Hotwire.registerBridgeComponents([ ${PASCAL}Component.self ])
+         in AppDelegate, BEFORE any Navigator is created (make the navigator lazy).
+  Android: Hotwire.registerBridgeComponents(
+             BridgeComponentFactory("$NAME", ::${PASCAL}Component)
+           )  in your Application subclass (also set Hotwire.config.jsonConverter).
 
-  Android: add  BridgeComponentFactory("$NAME", ::${PASCAL}Component)
-           to   the bridgeComponentFactories list (BridgeComponentFactories.kt)
+  (Strada-beta apps — e.g. the Piazza example: iOS adds ${PASCAL}Component.self to
+   BridgeComponent.allTypes; Android adds the factory to the bridgeComponentFactories list.)
 
   Web  : Stimulus auto-registers it as  bridge--$NAME  (no manual step), as long
          as the file is under app/javascript/controllers/bridge/.
