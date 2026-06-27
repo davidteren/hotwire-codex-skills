@@ -1,0 +1,32 @@
+skills/hotwire-native-path-config/references/path-config-guide.md
+  s_1332f17e3a16ff::t_d9b64b82ab9d1e 1-113
+skills/hotwire-native-path-config/scripts/lint_path_config.sh
+  s_1332f17e3a16ff::t_a95813479c27a0 1-93,96,98,101-107
+  s_1332f17e3a16ff::t_f5c281218c8154 94-95
+  s_1332f17e3a16ff::t_b836d22ce8c67c 97
+  s_1332f17e3a16ff::t_436b728d332bb0 99-100
+  s_1332f17e3a16ff::t_30a18c7bb00f88 108-110
+  s_1332f17e3a16ff::t_b68598498349b6 111-114
+skills/hotwire-native-path-config/templates/path_configuration.json.tmpl
+  s_1332f17e3a16ff::t_e74120c9b677d5 1-52
+README.md
+  s_1332f17e3a16ff::t_ce2c4623a58cd1 54-66
+skills/hotwire-native-path-config/SKILL.md
+  s_1332f17e3a16ff::t_b3a8217fe38cc7 1-77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "6b09f51f3151d25ea24d4399e6ff2f9b24d66a08",
+  "prompts": {},
+  "sessions": {
+    "s_1332f17e3a16ff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e5c36af-7264-4a48-a91a-d07f12dd87f9",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
