@@ -1,0 +1,29 @@
+skills/stimulus-patterns/references/stimulus-guide.md
+  s_1332f17e3a16ff::t_64cd879fc63926 1-91
+skills/stimulus-patterns/SKILL.md
+  s_1332f17e3a16ff::t_ca14368d700c94 1-55
+README.md
+  s_1332f17e3a16ff::t_57d71122e137bc 90-100
+skills/stimulus-patterns/templates/self_wiring_controller.js.tmpl
+  s_1332f17e3a16ff::t_7d0353d47f4c45 1-25
+skills/stimulus-patterns/scripts/lint_stimulus.sh
+  s_1332f17e3a16ff::t_8cb65439e6b60b 1-93
+skills/stimulus-patterns/templates/controller.js.tmpl
+  s_1332f17e3a16ff::t_485696890c2ff0 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "9344aefd41bf2a7d6212c53ec0a79843a3c57571",
+  "prompts": {},
+  "sessions": {
+    "s_1332f17e3a16ff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e5c36af-7264-4a48-a91a-d07f12dd87f9",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
