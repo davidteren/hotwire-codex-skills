@@ -1,0 +1,62 @@
+package __PACKAGE__
+
+import android.util.Log
+import dev.hotwire.strada.BridgeComponent
+import dev.hotwire.strada.BridgeDelegate
+import dev.hotwire.strada.Message
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+// Android half of the "__COMPONENT_NAME__" Strada bridge component.
+// File: .../__CLASS_NAME__Component.kt
+// `name` is the CONTRACT — must match web (static component) + iOS byte-for-byte.
+// After creating this file you MUST register it: add
+//   BridgeComponentFactory("__COMPONENT_NAME__", ::__CLASS_NAME__Component)
+// to the bridgeComponentFactories list (BridgeComponentFactories.kt).
+class __CLASS_NAME__Component(
+  name: String,
+  private val delegate: BridgeDelegate<NavDestination>
+) : BridgeComponent<NavDestination>(name, delegate) {
+
+  private val fragment: WebFragment
+    get() = delegate.destination.fragment as WebFragment
+
+  override fun onReceive(message: Message) {
+    when (message.event) {
+      "connect" -> handleConnect(message)
+      "disconnect" -> handleDisconnect()
+      else -> Log.w("Bridge", "Unknown event for $name: $message")
+    }
+  }
+
+  private fun handleConnect(message: Message) {
+    val data = message.data<MessageData>() ?: return
+    // TODO: render native UI from data.items, replying via replyTo("connect", ...)
+    // when the user picks one.
+    data.items.forEach { /* addMenuItem(it) */ }
+  }
+
+  private fun handleDisconnect() {
+    // TODO: remove whatever handleConnect rendered (e.g. toolbar menu items).
+  }
+
+  @Serializable
+  data class MessageData(
+    @SerialName("items") val items: List<Item>
+  )
+
+  // Mirror of the web payload. EVERY key the web sends must appear here or it is
+  // silently dropped (this is the classic web/Android divergence — e.g. an `icon`
+  // field present on web + iOS but missing here). Keep in sync with the JS controller.
+  @Serializable
+  data class Item(
+    @SerialName("title") val title: String,
+    @SerialName("index") val index: Int,
+    @SerialName("icon") val icon: String? = null
+  )
+
+  @Serializable
+  data class ResponseData(
+    @SerialName("selectedIndex") val selectedIndex: Int
+  )
+}

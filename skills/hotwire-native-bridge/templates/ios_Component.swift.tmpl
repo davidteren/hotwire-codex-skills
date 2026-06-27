@@ -1,0 +1,60 @@
+import Foundation
+import UIKit
+import Strada
+
+// iOS half of the "__COMPONENT_NAME__" Strada bridge component.
+// File: <App>/Bridge/__CLASS_NAME__Component.swift
+// `name` is the CONTRACT — must match web (static component) + Android byte-for-byte.
+// After creating this file you MUST register it: add `__CLASS_NAME__Component.self`
+// to BridgeComponent.allTypes (Bridge/BridgeComponent+<App>.swift).
+final class __CLASS_NAME__Component: BridgeComponent {
+  override class var name: String { "__COMPONENT_NAME__" }
+
+  override func onReceive(message: Message) {
+    switch message.event {
+    case "connect":
+      handleConnect(message: message)
+    case "disconnect":
+      handleDisconnect()
+    default:
+      print("Unknown message event for \(Self.name): \(message)")
+    }
+  }
+
+  private func handleConnect(message: Message) {
+    guard let data: MessageData = message.data() else { return }
+    // TODO: render native UI from data.items, wiring each control's action to
+    // sendSelectedMessage so the web side learns which item was chosen.
+    _ = data
+  }
+
+  private func handleDisconnect() {
+    // TODO: remove whatever handleConnect rendered (e.g. nav bar buttons).
+  }
+
+  @objc func sendSelectedMessage(sender: UIBarButtonItem) {
+    reply(to: "connect", with: ResponseData(selectedIndex: sender.tag))
+  }
+
+  private var viewController: UIViewController? {
+    delegate.destination as? UIViewController
+  }
+}
+
+private extension __CLASS_NAME__Component {
+  // Mirror of the web payload. EVERY key the web sends must appear here (optional
+  // is fine) or it is silently dropped — keep this in sync with the JS controller.
+  struct MessageData: Decodable {
+    let items: [Item]
+  }
+
+  struct Item: Decodable {
+    let title: String
+    let index: Int
+    let icon: String?
+  }
+
+  struct ResponseData: Encodable {
+    let selectedIndex: Int
+  }
+}
