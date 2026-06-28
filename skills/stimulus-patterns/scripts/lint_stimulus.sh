@@ -30,9 +30,24 @@ def arr_items(text, kw):
     return set(re.findall(r'["\']([^"\']+)["\']', m.group(1))) if m else set()
 
 def obj_keys(text, kw):
-    m = re.search(r'static\s+'+kw+r'\s*=\s*\{(.*?)\}', text, re.S)
+    # Match the WHOLE object via brace balancing (a non-greedy {...} stops at the
+    # first inner } — truncating keys after the first typed value like
+    # `foo: { type: Number, default: 1 }`), then keep only top-level keys.
+    m = re.search(r'static\s+'+kw+r'\s*=\s*\{', text)
     if not m: return set()
-    return set(re.findall(r'([A-Za-z0-9_]+)\s*:', m.group(1)))
+    i, depth, start = m.end(), 1, m.end()
+    while i < len(text) and depth:
+        if text[i] == '{': depth += 1
+        elif text[i] == '}': depth -= 1
+        i += 1
+    body = text[start:i-1]
+    keys, depth = set(), 0
+    for tok in re.finditer(r'([A-Za-z0-9_]+)\s*:|[{}]', body):
+        s = tok.group(0)
+        if s == '{': depth += 1
+        elif s == '}': depth -= 1
+        elif depth == 0: keys.add(tok.group(1))
+    return keys
 
 def norm_has(name):
     # hasFooTarget -> foo
