@@ -1,0 +1,21 @@
+.claude-plugin/plugin.json
+  s_a526102195a0a2::t_9eee182ffde7ea 1-8
+.claude-plugin/marketplace.json
+  s_a526102195a0a2::t_69cae9d63f9b90 1-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "f1a2fd7245fd6905650eb6c6470f98a89d209e78",
+  "prompts": {},
+  "sessions": {
+    "s_a526102195a0a2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aafbb10f-22c1-4c10-99ee-920c290685ff",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
