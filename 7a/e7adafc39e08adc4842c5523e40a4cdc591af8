@@ -1,0 +1,53 @@
+skills/turbo-frames-patterns/references/turbo-frames-guide.md
+  s_a526102195a0a2::t_412d24c129b982 10-17
+AGENTS.md
+  s_a526102195a0a2::t_fdea3d06481079 42-55
+skills/rails-8-upgrade/SKILL.md
+  s_a526102195a0a2::t_8d0deeeea03309 12
+skills/rails-token-auth/SKILL.md
+  s_a526102195a0a2::t_c7cd8bd5568601 11
+skills/turbo-streams-patterns/SKILL.md
+  s_a526102195a0a2::t_976d43b667146f 11
+skills/turbo-frames-patterns/SKILL.md
+  s_a526102195a0a2::t_acdce506f410f7 3
+  s_a526102195a0a2::t_a931c99340384b 11
+skills/turbo-streams-patterns/references/turbo-streams-guide.md
+  s_a526102195a0a2::t_1d53069f852966 9-18
+skills/hotwire-native-path-config/SKILL.md
+  s_a526102195a0a2::t_35ba7747e6fa5b 14
+skills/stimulus-patterns/SKILL.md
+  s_a526102195a0a2::t_6865e84a9db6f1 9
+skills/turbo-morphing/SKILL.md
+  s_a526102195a0a2::t_b4ee5c6c070d27 3
+  s_a526102195a0a2::t_06226720f299c0 14
+skills/hotwire-native-bridge/references/bridge-contract.md
+  s_a526102195a0a2::t_ee993179d82875 6-14
+skills/hotwire-native-path-config/references/path-config-guide.md
+  s_a526102195a0a2::t_91987d013ad432 8-17
+skills/hotwire-native-bridge/SKILL.md
+  s_a526102195a0a2::t_c8112a2b69fb5a 21
+.claude-plugin/marketplace.json
+  s_a526102195a0a2::t_390d025dee047e 4
+.claude-plugin/plugin.json
+  s_a526102195a0a2::t_7ad62052bf51e2 3
+hooks/pre-push
+  s_a526102195a0a2::t_92dcef1e751d25 1-15
+scripts/skill_lint.py
+  s_a526102195a0a2::t_f9554a411bda80 1-176
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "7ae7adafc39e08adc4842c5523e40a4cdc591af8",
+  "prompts": {},
+  "sessions": {
+    "s_a526102195a0a2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aafbb10f-22c1-4c10-99ee-920c290685ff",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
