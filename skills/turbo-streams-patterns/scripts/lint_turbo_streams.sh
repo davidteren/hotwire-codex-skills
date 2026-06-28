@@ -72,5 +72,36 @@ else
 fi
 echo
 
+# 4. Response-stream templates (controller-rendered turbo_stream — the non-broadcast path)
+echo "4. Response-stream templates (controller-rendered) —"
+TS_TEMPLATES=$(find "$APP/app/views" -name '*.turbo_stream.erb' 2>/dev/null)
+if [ -z "$TS_TEMPLATES" ]; then
+  echo "  (no controller-response *.turbo_stream.erb templates)"
+else
+  echo "  $(echo "$TS_TEMPLATES" | grep -c .) response template(s)"
+  STD='append|prepend|replace|update|remove|before|after|replace_all|morph|refresh|action'
+  # 4a. Dangling partial: a literal `partial: "dir/name"` (slash-pathed → resolvable from the
+  #     views root) that maps to no file → ActionView::MissingTemplate when that stream renders.
+  resp=0
+  PARTIAL_REFS=$(grep -rhoE "partial:[[:space:]]*[\"'][^\"']+[\"']" $TS_TEMPLATES 2>/dev/null \
+                 | grep -oE "[\"'][^\"']+[\"']" | tr -d "\"'" | sort -u)
+  for p in $PARTIAL_REFS; do
+    case "$p" in */*) : ;; *) continue ;; esac          # bare name → relative to template dir, skip (ceiling)
+    case "$p" in *'#{'*|*'<%'*) continue ;; esac          # dynamic path, skip
+    dir=$(dirname "$p"); base=$(basename "$p")
+    ls "$APP/app/views/$dir/_$base".* >/dev/null 2>&1 || {
+      bad "partial \"$p\" in a turbo_stream template resolves to no file (app/views/$dir/_$base.*) — ActionView::MissingTemplate when that stream renders"; resp=1; }
+  done
+  # 4b. Custom action used in a response template but not registered client-side (parity, response side).
+  TS_ACTIONS=$(grep -rhoE 'turbo_stream\.[a-z_][A-Za-z0-9_]*' $TS_TEMPLATES 2>/dev/null | sed 's/turbo_stream\.//' | sort -u)
+  for a in $TS_ACTIONS; do
+    echo "$a" | grep -qE "^($STD)$" && continue
+    echo "$JS_ACTIONS" | grep -qx "$a" || { warn "response template uses custom turbo_stream.$a but no JS StreamActions.$a — client silently ignores it"; resp=1; }
+  done
+  [ "$resp" -eq 0 ] && ok "response templates: literal partials resolve, custom actions registered"
+  echo "  note: bare (no-slash) partials, dynamic render targets, and target-id existence aren't resolved here — verify those by hand."
+fi
+echo
+
 if [ "$fail" -eq 0 ]; then echo "✅ Turbo Streams wiring OK"; else echo "❌ Turbo Streams findings above — see references/turbo-streams-guide.md"; fi
 exit $fail

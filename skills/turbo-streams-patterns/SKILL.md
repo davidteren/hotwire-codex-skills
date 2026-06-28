@@ -49,5 +49,10 @@ scripts/lint_turbo_streams.sh path/to/rails-app
 
 Flags: custom stream actions wired on only one side; **channels that `stream_from`
 without authorizing the subscriber** (broadcast eavesdropping — reported as an error);
-`broadcast_*_later` without a job backend. Heuristic grep scan (names its ceiling).
-Verified: clean on the Piazza app, flags a synthetic leaky-channel + half-wired app.
+`broadcast_*_later` without a job backend; and (response-stream path) a `*.turbo_stream.erb`
+template whose literal slash-pathed `partial:` resolves to no file (→ `MissingTemplate`
+when that stream renders) or a custom `turbo_stream.<action>` with no client-side
+`StreamActions.<action>`. Heuristic grep scan (names its ceiling — bare/dynamic partials
+and target-id existence aren't resolved). Verified: clean on the Piazza app and on a real
+response-template app (miela_app, 14 templates), flags a synthetic leaky-channel +
+half-wired + dangling-partial app.

@@ -39,7 +39,7 @@ Eight skills, all built and verified.
 | `turbo-frames-patterns/scripts/lint_turbo_frames.sh` | **dangling frame target** (link/form targets a frame id no `turbo_frame_tag`/`<turbo-frame>` defines → navigation goes nowhere), **literal frame id in a collection partial** (duplicate DOM ids — use `dom_id`); skips reserved (`_top`/`_self`) + dynamic ids |
 | `hotwire-native-path-config/scripts/lint_path_config.sh` | bad regex, off-schema property/value, `presentation:"modal"` beta-ism, unanchored pattern, catch-all order; `--compare` iOS↔Android drift |
 | `rails-token-auth/scripts/audit_token_auth.sh` | `find_by+authenticate` enumeration, plaintext token, plain cookie, opt-in auth, cookie-only logout, weak password |
-| `turbo-streams-patterns/scripts/lint_turbo_streams.sh` | half-wired custom action, **channel that streams without authorizing** (eavesdropping), async broadcast with no job backend |
+| `turbo-streams-patterns/scripts/lint_turbo_streams.sh` | half-wired custom action, **channel that streams without authorizing** (eavesdropping), async broadcast with no job backend, **response-template `*.turbo_stream.erb` with a dangling `partial:` or an unregistered custom action** |
 | `stimulus-patterns/scripts/lint_stimulus.sh` | `this.xTarget/Value/Class` not declared, `connect()` without `disconnect()` cleanup, controller missing from the manifest |
 
 ## Layout
