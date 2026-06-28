@@ -12,7 +12,7 @@ between web and native, the upgrade gotchas, the security boundaries, the
 conventions — and packages it as a Claude Code **skill**: a `SKILL.md`, a grounded
 reference, code templates, and a **runnable checker**.
 
-Seven skills, all built and verified.
+Eight skills, all built and verified.
 
 ## The skills
 
@@ -21,6 +21,7 @@ Seven skills, all built and verified.
 | **hotwire-native-bridge** | adding/validating a Strada-style bridge component across web + iOS + Android | generator (3 platform halves from one name) · cross-platform contract linter |
 | **rails-8-upgrade** | bumping Rails 7 → 8, or chasing an intermittent route-test flake | pre-flight audit · LazyRouteSet `draw_test_routes` flake detector + fix |
 | **turbo-morphing** | adding Turbo 8 page refreshes / `broadcasts_refreshes`, or morph resets browser state | decision guide · morph-readiness checker |
+| **turbo-frames-patterns** | adding a frame, driving one from an outside link/form, lazy-loading a panel, or a frame click navigates nowhere / a collection makes duplicate ids | patterns guide · dangling-target + duplicate-id linter |
 | **hotwire-native-path-config** | a native screen opens with the wrong presentation, or wiring native nav | 1.x starter config · schema/footgun validator + iOS↔Android drift check |
 | **rails-token-auth** | adding login, or sharing one auth across web + Action Cable + native | secure templates (no gem) · 6-point security audit |
 | **turbo-streams-patterns** | live updates, custom stream actions, or private broadcasts | authorized-channel + custom-action templates · wiring/eavesdropping linter |
@@ -35,6 +36,7 @@ Seven skills, all built and verified.
 | `rails-8-upgrade/scripts/upgrade_audit.sh` | version/lock mismatch, `load_defaults` gap, pagy <6 + custom views, flaky-route usage |
 | `rails-8-upgrade/scripts/lint_route_test_helper.sh` | `draw_test_routes` not materialize-before-flag, no `ensure` reset, `finalize!` dead-end, missing `reload_routes!` teardown |
 | `turbo-morphing/scripts/lint_morphing.sh` | global (layout) morph, stateful widget in morph scope without a guard, async broadcast with no job backend |
+| `turbo-frames-patterns/scripts/lint_turbo_frames.sh` | **dangling frame target** (link/form targets a frame id no `turbo_frame_tag`/`<turbo-frame>` defines → navigation goes nowhere), **literal frame id in a collection partial** (duplicate DOM ids — use `dom_id`); skips reserved (`_top`/`_self`) + dynamic ids |
 | `hotwire-native-path-config/scripts/lint_path_config.sh` | bad regex, off-schema property/value, `presentation:"modal"` beta-ism, unanchored pattern, catch-all order; `--compare` iOS↔Android drift |
 | `rails-token-auth/scripts/audit_token_auth.sh` | `find_by+authenticate` enumeration, plaintext token, plain cookie, opt-in auth, cookie-only logout, weak password |
 | `turbo-streams-patterns/scripts/lint_turbo_streams.sh` | half-wired custom action, **channel that streams without authorizing** (eavesdropping), async broadcast with no job backend |
@@ -62,7 +64,7 @@ skills/stimulus-patterns/scripts/lint_stimulus.sh          path/to/rails-app
 skills/hotwire-native-path-config/scripts/lint_path_config.sh --compare ios.json android.json
 ```
 
-Pure bash; three checkers (`lint_path_config`, `lint_stimulus`) need `python3`. Every
+Pure bash; three checkers (`lint_path_config`, `lint_stimulus`, `lint_turbo_frames`) need `python3`. Every
 checker exits non-zero on findings (CI-friendly) and prints the fix or a reference
 pointer.
 
