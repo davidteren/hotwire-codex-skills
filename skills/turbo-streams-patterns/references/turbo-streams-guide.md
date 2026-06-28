@@ -6,6 +6,16 @@ reach here when you need precision: append a chat message, replace one card, tog
 class, update an element outside the current frame. Grounded in the Piazza app
 (`piazza-web/wip/analysis/02`, `07`).
 
+## Contents
+
+- When targeted streams vs morphing
+- Pattern 1 — model broadcasts over Action Cable
+- Pattern 2 — authorize the stream (security boundary)
+- Pattern 3 — custom stream action (two halves that must match)
+- Pattern 4 — stream tags inside a frame response
+- Pattern 5 — Kredis presence to choose live vs notify
+- Sources
+
 ## When targeted streams vs morphing
 
 | Need | Use |

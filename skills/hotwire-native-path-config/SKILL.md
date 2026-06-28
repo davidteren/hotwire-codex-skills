@@ -11,7 +11,7 @@ and Android; the Rails side detects native via `turbo_native_app?` and serves tr
 markup via request variants. This skill helps you author both correctly and keep the
 two platform configs in sync.
 
-Full schema + the server setup: `references/path-config-guide.md`. Real-world note:
+Full schema + the server setup: [`references/path-config-guide.md`](references/path-config-guide.md). Real-world note:
 `piazza-web/wip/analysis/05-hotwire-native-variants.md`.
 
 ## When to use

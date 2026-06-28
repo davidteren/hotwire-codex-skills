@@ -1,6 +1,6 @@
 ---
 name: turbo-frames-patterns
-description: Scope navigation to a region with Turbo Frames correctly, and catch the wiring mistakes that fail silently. Use when adding a turbo_frame_tag / <turbo-frame>, driving a frame from an outside link/form, lazy-loading a panel (src + loading: :lazy), inline-editing a row, or debugging a frame that does nothing / a click that navigates nowhere / a filter form that loses focus / duplicate frame ids from a collection. The region-scoped complement to targeted streams (turbo-streams-patterns) and morph refreshes (turbo-morphing).
+description: Scope navigation to a region with Turbo Frames correctly, and catch the wiring mistakes that fail silently. Use when adding a turbo_frame_tag (a turbo-frame element), driving a frame from an outside link/form, lazy-loading a panel (src + loading: :lazy), inline-editing a row, or debugging a frame that does nothing / a click that navigates nowhere / a filter form that loses focus / duplicate frame ids from a collection. The region-scoped complement to targeted streams (turbo-streams-patterns) and morph refreshes (turbo-morphing).
 ---
 
 # Turbo Frames
@@ -8,7 +8,7 @@ description: Scope navigation to a region with Turbo Frames correctly, and catch
 Frames scope navigation to a region: a click or form submit inside a `<turbo-frame>` is
 captured by Turbo and only that frame updates. The failures are quiet — a mistargeted or
 missing frame produces no error, just navigation that goes nowhere. Full patterns:
-`references/turbo-frames-guide.md`.
+[`references/turbo-frames-guide.md`](references/turbo-frames-guide.md).
 
 ## When to use
 

@@ -6,7 +6,7 @@ description: Write small, Turbo-safe, server-driven Stimulus controllers, and ca
 # Stimulus patterns
 
 Keep controllers small, Turbo-safe, and driven by the server. Full patterns:
-`references/stimulus-guide.md` (grounded in the Piazza controllers).
+[`references/stimulus-guide.md`](references/stimulus-guide.md) (grounded in the Piazza controllers).
 
 ## When to use
 

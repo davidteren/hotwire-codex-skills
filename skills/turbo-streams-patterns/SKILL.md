@@ -8,7 +8,7 @@ description: Build targeted Turbo Streams correctly — model broadcasts over Ac
 Surgical DOM updates: broadcast/render specific `<turbo-stream>` actions against
 specific ids. Use this when you need precision (append a chat message, replace one
 card, move a class); use **`turbo-morphing`** when a whole-page refresh-with-morph is
-simpler. Full patterns: `references/turbo-streams-guide.md`.
+simpler. Full patterns: [`references/turbo-streams-guide.md`](references/turbo-streams-guide.md).
 
 ## When to use
 

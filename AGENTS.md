@@ -39,3 +39,17 @@ skills/<name>/
 `skills/hotwire-native-bridge/` — Strada bridge component generator + contract
 linter. Validated: the linter flags Piazza's real web→Android `icon` drop and
 nothing else; the generator produces all three halves with consistent name/payload.
+
+## Skill-lint pre-push hook
+
+A pre-push gate (`hooks/pre-push`) runs `scripts/skill_lint.py` over every `SKILL.md` and blocks a push on
+any failure — a clean-room implementation of Anthropic's Agent Skills authoring rules (frontmatter present +
+kebab `name` matching the dir; `description` ≤ 1024 chars and no XML tags — write `turbo_frame_tag`, not
+`<turbo-frame>`; reference files ≤ 500 lines, a `## Contents` on any > 100 lines, every reference linked from
+SKILL.md by a real markdown link, links resolve). Enable once per clone:
+
+```sh
+git config core.hooksPath hooks
+```
+
+Bypass a single push with `git push --no-verify`. Run directly: `python3 scripts/skill_lint.py`.

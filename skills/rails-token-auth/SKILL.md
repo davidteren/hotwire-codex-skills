@@ -8,7 +8,7 @@ description: Build secure DB-backed token session auth in Rails — one mechanis
 A revocable, DB-backed session model (`AppSession`) that authenticates web **and**
 native clients with one mechanism — plus `Current` attributes and secure-by-default
 controller concerns. Built without a gem (plain `has_secure_password` +
-`authenticate_by`). Full design + rationale: `references/token-auth-guide.md`.
+`authenticate_by`). Full design + rationale: [`references/token-auth-guide.md`](references/token-auth-guide.md).
 
 ## When to use
 

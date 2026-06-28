@@ -1,6 +1,6 @@
 ---
 name: turbo-morphing
-description: Apply Turbo 8 page refreshes with morphing and broadcast refreshes correctly, and avoid the morphing footguns. Use when adding smooth page refreshes (turbo_refreshes_with / turbo-refresh-method morph), broadcasting live updates with broadcasts_refreshes, deciding between morph-refresh vs targeted Turbo Streams vs frames, or when morphing resets browser state (open <details>/<dialog>, popovers, scroll, focus, JS widgets) after a refresh. Provides a decision guide and a morph-readiness checker.
+description: Apply Turbo 8 page refreshes with morphing and broadcast refreshes correctly, and avoid the morphing footguns. Use when adding smooth page refreshes (turbo_refreshes_with / turbo-refresh-method morph), broadcasting live updates with broadcasts_refreshes, deciding between morph-refresh vs targeted Turbo Streams vs frames, or when morphing resets browser state (an open details or dialog element, popovers, scroll, focus, JS widgets) after a refresh. Provides a decision guide and a morph-readiness checker.
 ---
 
 # Turbo 8 morphing & page refreshes
@@ -11,7 +11,7 @@ back) and Turbo morphs only the changed DOM via idiomorph, preserving screen sta
 It's the simpler "happy path" — but it has sharp edges. This skill helps you pick
 the right tool and avoid the footguns.
 
-Full background: `references/morphing-guide.md`. Real-world note:
+Full background: [`references/morphing-guide.md`](references/morphing-guide.md). Real-world note:
 `piazza-web/wip/analysis/08-turbo8-morphing-refreshes.md`.
 
 ## When to use

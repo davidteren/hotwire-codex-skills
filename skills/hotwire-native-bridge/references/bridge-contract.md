@@ -3,6 +3,15 @@
 Derived from the real Piazza `nav-menu` component (the only Strada component in the
 *Rails and Hotwire Codex* app). Use it as the canonical worked example.
 
+## Contents
+
+- The three halves of `nav-menu`
+- Message flow
+- Payload shapes (must stay in sync)
+- Gotcha catalogue
+- Hotwire Native 1.x vs the Piazza baseline (Strada beta)
+- Source
+
 ## The three halves of `nav-menu`
 
 | Concern | Web (Stimulus) | iOS (Swift) | Android (Kotlin) |

@@ -7,6 +7,14 @@ wrong: a frame mismatch produces no Ruby/JS error, just navigation that goes now
 or content that never appears. Complements `turbo-streams-patterns` (surgical
 broadcasts) and `turbo-morphing` (whole-page refresh).
 
+## Contents
+
+- The model in one paragraph
+- Patterns the linter checks (the silent failures)
+- Patterns the linter does NOT check (verify these by hand)
+- Frames vs streams vs morph
+- Sources
+
 ## The model in one paragraph
 
 A frame is `turbo_frame_tag "id"` (or `<turbo-frame id="id">`). Links/forms **inside**

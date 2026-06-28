@@ -18,7 +18,7 @@ Getting any of these subtly wrong is the #1 time-sink: a name typo makes the
 component invisible; a payload key missing from one native struct vanishes with no
 crash. This skill generates the three halves consistently and lints the contract.
 
-See `references/bridge-contract.md` for the full contract + the real Piazza
+See [`references/bridge-contract.md`](references/bridge-contract.md) for the full contract + the real Piazza
 `nav-menu` example, and the gotcha catalogue.
 
 ## When to use

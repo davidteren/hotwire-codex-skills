@@ -1,7 +1,7 @@
 {
   "name": "hotwire-rails-toolkit-marketplace",
   "metadata": {
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "hotwire-rails-toolkit — skills + runnable checkers for Rails + Hotwire apps shipping to web/PWA, iOS, and Android."
   },
   "owner": { "name": "David Teren" },

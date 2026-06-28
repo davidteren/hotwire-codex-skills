@@ -9,7 +9,7 @@ Two things kill time in a 7→8 upgrade: deciding what to bump vs defer, and a
 **flaky route-helper test** that Rails 8's `LazyRouteSet` introduces and that hides
 behind single green test runs. This skill handles both.
 
-Read `references/rails-7-to-8.md` for the full checklist and the why.
+Read [`references/rails-7-to-8.md`](references/rails-7-to-8.md) for the full checklist and the why.
 
 ## When to use
 

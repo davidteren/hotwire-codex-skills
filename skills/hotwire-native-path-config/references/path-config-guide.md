@@ -5,6 +5,16 @@ viewer) on iOS + Android via a JSON **path configuration**, plus the server-side
 `turbo_native_app?` + request-variant setup that strips web chrome. Schema verified
 against native.hotwired.dev (1.x); examples grounded in the Piazza apps.
 
+## Contents
+
+- The JSON schema (1.x)
+- Bundled vs remote
+- How Piazza wires it
+- Server side: `turbo_native_app?` + request variants
+- Tab switching from a server redirect
+- Common footguns
+- Sources
+
 ## The JSON schema (1.x)
 
 ```json
