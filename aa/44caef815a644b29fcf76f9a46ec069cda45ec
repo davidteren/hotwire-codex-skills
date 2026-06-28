@@ -1,0 +1,19 @@
+skills/stimulus-patterns/scripts/lint_stimulus.sh
+  s_a526102195a0a2::t_feecac395b47ac 33-36,38-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "aa44caef815a644b29fcf76f9a46ec069cda45ec",
+  "prompts": {},
+  "sessions": {
+    "s_a526102195a0a2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aafbb10f-22c1-4c10-99ee-920c290685ff",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
