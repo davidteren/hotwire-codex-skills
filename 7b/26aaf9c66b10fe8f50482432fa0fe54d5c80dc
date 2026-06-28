@@ -1,0 +1,27 @@
+skills/turbo-streams-patterns/scripts/lint_turbo_streams.sh
+  s_a526102195a0a2::t_fa5723531319e0 75-105
+README.md
+  s_a526102195a0a2::t_e1981400eaacec 42
+skills/turbo-streams-patterns/SKILL.md
+  s_a526102195a0a2::t_4bec7151c8fdbb 52-58
+.claude-plugin/marketplace.json
+  s_a526102195a0a2::t_e18a9b110ca64a 4
+.claude-plugin/plugin.json
+  s_a526102195a0a2::t_3f109bf4bd0e37 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "7b26aaf9c66b10fe8f50482432fa0fe54d5c80dc",
+  "prompts": {},
+  "sessions": {
+    "s_a526102195a0a2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aafbb10f-22c1-4c10-99ee-920c290685ff",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
