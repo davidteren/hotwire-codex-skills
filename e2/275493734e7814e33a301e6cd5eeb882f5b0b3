@@ -1,0 +1,25 @@
+AGENTS.md
+  s_e52626202b9a8b::t_c430edc9834797 78-82
+docs/og-card.html
+  s_e52626202b9a8b::t_71dbc4624f1c0e 1-3,6-16,18-26,33-35
+  s_e52626202b9a8b::t_bde1dc008115f6 4-5,17
+  s_e52626202b9a8b::t_7336d88ecc1dfe 27-32
+docs/index.html
+  s_e52626202b9a8b::t_f0b2a6c17411e5 12-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.6",
+  "base_commit_sha": "e2275493734e7814e33a301e6cd5eeb882f5b0b3",
+  "prompts": {},
+  "sessions": {
+    "s_e52626202b9a8b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c686b479-f9b4-4ecf-90f8-2f0968109bec",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
