@@ -11,6 +11,12 @@
   --color-ink: #0b0f14;
   --color-slate950: #0b1220;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-inter: "InterVariable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-inter--font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  --font-plex: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mona: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-monaw: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-monaw--font-variation-settings: "wdth" 110;
 }
 
 /* Respect an OS-level reduced-motion preference for anchor scrolling. */
