@@ -1,18 +1,40 @@
-# hotwire-rails-toolkit
+# hotwire-codex-skills
+
+**An unofficial skillset inspired by [*The Rails and Hotwire Codex*](https://railsandhotwirecodex.com/)
+by [Ayush Newatia](https://radioactivetoy.tech) — published with his permission.**
 
 **Skills and runnable tools for building Rails + Hotwire apps that ship to web/PWA,
 iOS, and Android.**
 
-Extracted while implementing the *Rails and Hotwire Codex* "Piazza" app across all
-three platforms — [piazza-web](https://github.com/davidteren/piazza-web),
-[piazza-ios](https://github.com/davidteren/piazza-ios),
-[piazza-android](https://github.com/davidteren/piazza-android). Each skill captures
+Extracted while working through the *Rails and Hotwire Codex* "Piazza" app and
+carrying it forward across all three platforms — `piazza-web`, `piazza-ios`, and
+`piazza-android`. Those implementation repos are **private**: they're a derivative
+of the book's copyrighted example app, so out of respect for the author they aren't
+public (build your own by following the book). Each skill captures
 the knowledge a real cross-platform project forces you to learn — the contracts
 between web and native, the upgrade gotchas, the security boundaries, the
 conventions — and packages it as a Claude Code **skill**: a `SKILL.md`, a grounded
 reference, code templates, and a **runnable checker**.
 
 Eight skills, all built and verified.
+
+> ### Read the book first
+> These skills are a companion to — not a replacement for — **[The Rails and Hotwire
+> Codex](https://railsandhotwirecodex.com/)** by **Ayush Newatia**. The book teaches
+> you to build *Piazza*, a neighbourhood-marketplace app, across **web, iOS, and
+> Android** with Ruby on Rails and Hotwire — authentication from scratch, Turbo,
+> Turbo Native, Stimulus, Action Cable, full-text search, and more. Everything here
+> assumes you understand *what* the code does and *why*; the book is where that
+> understanding comes from.
+>
+> **[Buy it on Gumroad — $49](https://ayushn21.gumroad.com/l/railshotwirecodex)**
+> (a [free 3-chapter preview](https://railsandhotwirecodex.com/) is on the book site).
+> The book targets **Rails 7.1**; this toolkit carries the same app forward to
+> **Rails 8**, **Turbo 8**, and **Hotwire Native 1.x** — read the book for the
+> foundations, use these skills for the upgrade and the sharp edges.
+>
+> This project is an independent, community effort. It is **not** an official product
+> of the book or its author, and reuses none of the book's text or source code.
 
 ## The skills
 
@@ -73,8 +95,10 @@ in a session, copy or symlink `skills/<name>/` into `~/.claude/skills/`.
 
 ## How it's built (and why you can trust it)
 
-- **Code-grounded.** Every reference claim traces to a `path:line` in the Piazza
-  repos — no invented APIs. The deeper write-ups live in those repos' `wip/analysis/`.
+- **Code-grounded.** Every reference claim traces to a `path:line` in the (private)
+  Piazza implementation — no invented APIs. The deeper write-ups live in those repos'
+  `wip/analysis/` notes; they stay private with the book-derived source, but each
+  skill's `references/*.md` carries the distilled reasoning in full.
 - **Verified both ways.** Every checker is run against the **real** Piazza code (must
   be clean / report the truth) **and** a synthetic broken case (must flag it) before
   shipping. Example: the bridge linter catches Piazza's real web→Android `icon`-drop
@@ -88,10 +112,25 @@ in a session, copy or symlink `skills/<name>/` into `~/.claude/skills/`.
   vulnerability classes (user enumeration, plaintext tokens, broadcast eavesdropping),
   not just style.
 
+## Acknowledgements
+
+All credit for the underlying material goes to **[Ayush Newatia](https://radioactivetoy.tech)**,
+author of **[The Rails and Hotwire Codex](https://railsandhotwirecodex.com/)**. The
+*Piazza* app, its architecture, and the cross-platform approach these skills encode
+are his work — this toolkit only distils and extends that into runnable, agent-usable
+form. Ayush kindly gave permission to publish it. If these skills are useful to you,
+the right thanks is to **[buy the book ($49)](https://ayushn21.gumroad.com/l/railshotwirecodex)**
+and read it.
+
+Ayush is also available for Ruby / Rails / Hotwire contract work — see
+[radioactivetoy.tech](https://radioactivetoy.tech).
+
 ## Provenance
 
-Built from the Piazza implementation. Skill knowledge is distilled from these
-analysis notes (read them for the full reasoning):
+Built from a private Piazza implementation (a derivative of the book's example app,
+kept private out of respect for the author's copyright). Skill knowledge is distilled
+from these analysis notes — the notes themselves live in the private repos, but each
+skill's own `references/*.md` reproduces the reasoning:
 
 - `piazza-web/wip/analysis/` — 01 (Rails 8 upgrade + the flake), 02 (frames/streams),
   03 (Stimulus), 04 (Strada bridge contract), 05 (native variants), 06 (token auth),
@@ -102,3 +141,9 @@ Contributing a new skill: ground it in a `path:line`, target the current framewo
 version (keep the legacy mapping), write a checker that's **verified clean on real
 code and flags a synthetic break**, and make it name its own ceiling. One built +
 verified skill beats five stubs.
+
+## License
+
+[MIT](./LICENSE) © David Teren. Covers this toolkit's own code (skills, checkers,
+references, and site) — which reuses none of *The Rails and Hotwire Codex*'s text or
+source. The book and its Piazza example app remain the copyright of Ayush Newatia.

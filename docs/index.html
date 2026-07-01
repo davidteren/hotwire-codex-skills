@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hotwire-codex-skills — build interactive multi-platform Rails apps with Hotwire</title>
+  <meta name="description" content="A Claude Code skillset for building interactive, server-driven Rails apps with Turbo, Stimulus, and Hotwire Native — shipped to web, iOS, and Android. Inspired by The Rails and Hotwire Codex by Ayush Newatia." />
+
+  <meta property="og:title" content="hotwire-codex-skills" />
+  <meta property="og:description" content="Eight Claude Code skills for building interactive, multi-platform Rails + Hotwire apps — Turbo, Stimulus, Hotwire Native. Inspired by The Rails and Hotwire Codex." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-ink text-slate-100 font-sans antialiased">
+
+  <!-- ============ NAV ============ -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-ink/80 border-b border-white/10">
+    <div class="mx-auto max-w-6xl px-5 h-14 flex items-center justify-between">
+      <a href="#top" class="font-mono font-semibold tracking-tight text-slate-100">
+        <span class="text-rails-light">$</span> hotwire-codex-skills
+      </a>
+      <!-- desktop nav -->
+      <nav class="hidden sm:flex items-center gap-6 text-sm text-slate-300">
+        <a href="#skills" class="hover:text-white">Skills</a>
+        <a href="#checkers" class="hover:text-white">Checkers</a>
+        <a href="#book" class="hover:text-white">The book</a>
+        <a href="#install" class="hover:text-white">Install</a>
+        <a href="https://github.com/davidteren/hotwire-codex-skills" class="rounded-md bg-white/10 hover:bg-white/20 px-3 py-1.5 font-medium text-white">GitHub</a>
+      </nav>
+      <!-- mobile nav: native disclosure, no JS -->
+      <details class="sm:hidden relative">
+        <summary class="list-none cursor-pointer rounded-md bg-white/10 px-3 py-1.5 text-sm font-medium text-white" aria-label="Menu">Menu</summary>
+        <nav class="absolute right-0 mt-2 w-44 rounded-lg border border-white/10 bg-ink shadow-xl flex flex-col p-2 text-sm text-slate-200">
+          <a href="#skills" class="rounded px-3 py-2 hover:bg-white/10">Skills</a>
+          <a href="#checkers" class="rounded px-3 py-2 hover:bg-white/10">Checkers</a>
+          <a href="#book" class="rounded px-3 py-2 hover:bg-white/10">The book</a>
+          <a href="#install" class="rounded px-3 py-2 hover:bg-white/10">Install</a>
+          <a href="https://github.com/davidteren/hotwire-codex-skills" class="rounded px-3 py-2 hover:bg-white/10 font-medium">GitHub</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-rails via-rails-dark to-hot">
+      <div class="absolute inset-0 bg-black/30" aria-hidden="true"></div>
+      <div class="relative z-10 mx-auto max-w-5xl px-5 py-24 sm:py-32 text-center text-white">
+        <p class="inline-flex items-center gap-2 rounded-full bg-black/20 px-3 py-1 text-xs font-mono mb-6">
+          8 skills · web · iOS · Android · Rails 8 · Turbo 8
+        </p>
+        <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight leading-none">
+          The hard parts of Hotwire,<br />handled.
+        </h1>
+        <p class="mt-8 text-xl text-white/90 max-w-2xl mx-auto">
+          A Claude Code skillset for building interactive, server-driven Rails apps with
+          Turbo, Stimulus, and Hotwire&nbsp;Native — one codebase, shipped to web, iOS, and Android.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3 justify-center">
+          <a href="#install" class="rounded-lg bg-white text-rails hover:bg-slate-100 px-6 py-3 font-semibold shadow-lg">Install the plugin</a>
+          <a href="#book" class="rounded-lg border border-white/70 hover:bg-white/10 px-6 py-3 font-semibold">Read the book first &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="mx-auto max-w-6xl px-5 py-20">
+      <h2 class="text-3xl font-bold tracking-tight">The eight skills</h2>
+      <p class="mt-3 text-slate-400 max-w-2xl">Each is a <code class="font-mono text-slate-300">SKILL.md</code> + a code-grounded reference + templates + a runnable checker. Verified clean on real code and against a synthetic break.</p>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- cards -->
+        <article class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 class="font-mono font-semibold text-white">hotwire-native-bridge</h3>
+          <p class="mt-2 text-sm text-slate-400">Strada-style bridge components across web + iOS + Android.</p>
+          <p class="mt-3 text-xs text-hot font-mono">generator (3 halves) · contract linter</p>
+        </article>
+        <article class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 class="font-mono font-semibold text-white">rails-8-upgrade</h3>
+          <p class="mt-2 text-sm text-slate-400">Rails 7 → 8, and the intermittent LazyRouteSet route-test flake.</p>
+          <p class="mt-3 text-xs text-hot font-mono">pre-flight audit · flake detector + fix</p>
+        </article>
+        <article class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 class="font-mono font-semibold text-white">turbo-morphing</h3>
+          <p class="mt-2 text-sm text-slate-400">Turbo 8 page refreshes / <code class="font-mono">broadcasts_refreshes</code> without losing browser state.</p>
+          <p class="mt-3 text-xs text-hot font-mono">decision guide · morph-readiness checker</p>
+        </article>
+        <article class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 class="font-mono font-semibold text-white">turbo-frames-patterns</h3>
+          <p class="mt-2 text-sm text-slate-400">Frames, outside-link/form drivers, lazy panels — no dead navigation or duplicate ids.</p>
+          <p class="mt-3 text-xs text-hot font-mono">patterns guide · dangling-target + dup-id linter</p>
+        </article>
+        <article class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 class="font-mono font-semibold text-white">hotwire-native-path-config</h3>
+          <p class="mt-2 text-sm text-slate-400">Native screen presentation + nav wiring, with iOS↔Android drift detection.</p>
+          <p class="mt-3 text-xs text-hot font-mono">1.x starter · schema/footgun validator</p>
+        </article>
+        <article class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 class="font-mono font-semibold text-white">rails-token-auth</h3>
+          <p class="mt-2 text-sm text-slate-400">One auth across web + Action Cable + native — no gem.</p>
+          <p class="mt-3 text-xs text-hot font-mono">secure templates · 6-point security audit</p>
+        </article>
+        <article class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 class="font-mono font-semibold text-white">turbo-streams-patterns</h3>
+          <p class="mt-2 text-sm text-slate-400">Live updates, custom actions, private broadcasts — without eavesdropping.</p>
+          <p class="mt-3 text-xs text-hot font-mono">authorized-channel templates · wiring linter</p>
+        </article>
+        <article class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 class="font-mono font-semibold text-white">stimulus-patterns</h3>
+          <p class="mt-2 text-sm text-slate-400">Controllers that connect, don't leak after navigation, and stay registered.</p>
+          <p class="mt-3 text-xs text-hot font-mono">annotated templates · cleanup/registration linter</p>
+        </article>
+        <a href="https://github.com/davidteren/hotwire-codex-skills#the-skills" class="rounded-xl border border-dashed border-white/15 bg-transparent p-5 flex items-center justify-center text-sm text-slate-400 hover:text-white hover:border-white/40 transition">
+          Full catalog on GitHub &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ CHECKERS ============ -->
+    <section id="checkers" class="border-y border-white/10 bg-slate950/50">
+      <div class="mx-auto max-w-6xl px-5 py-20">
+        <h2 class="text-3xl font-bold tracking-tight">What the checkers catch</h2>
+        <p class="mt-3 text-slate-400 max-w-2xl">The failures that pass tests, render fine, and silently do the wrong thing.</p>
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">eavesdropping</span><p class="mt-1 text-slate-400">a channel that streams without authorizing — anyone can subscribe.</p></div>
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">dropped payload</span><p class="mt-1 text-slate-400">a bridge field silently lost between web and native.</p></div>
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">dangling frame</span><p class="mt-1 text-slate-400">a link targets a frame id nothing defines — navigation goes nowhere.</p></div>
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">duplicate ids</span><p class="mt-1 text-slate-400">a literal frame id in a collection partial.</p></div>
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">route-test flake</span><p class="mt-1 text-slate-400">the Rails 8 LazyRouteSet <code class="font-mono">draw_test_routes</code> intermittent failure.</p></div>
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">user enumeration</span><p class="mt-1 text-slate-400"><code class="font-mono">find_by</code> + <code class="font-mono">authenticate</code> leaking which accounts exist.</p></div>
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">leaky controllers</span><p class="mt-1 text-slate-400">a Stimulus <code class="font-mono">connect()</code> with no <code class="font-mono">disconnect()</code> cleanup.</p></div>
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">global morph</span><p class="mt-1 text-slate-400">a layout-wide morph that resets stateful widgets.</p></div>
+          <div class="rounded-lg border border-white/10 p-4"><span class="text-rails-light font-mono">plaintext tokens</span><p class="mt-1 text-slate-400">auth tokens stored unhashed, or a plain cookie.</p></div>
+        </div>
+        <p class="mt-8 text-xs text-slate-400 max-w-2xl">Honest about limits: the checkers are heuristic text scans, not parsers — each says so in its output. A clean run is a gate, not a proof. Review custom logic.</p>
+      </div>
+    </section>
+
+    <!-- ============ BOOK CREDIT ============ -->
+    <section id="book" class="mx-auto max-w-6xl px-5 py-20">
+      <div class="rounded-2xl border border-hot/30 bg-gradient-to-br from-hot/10 via-transparent to-rails/10 p-8 sm:p-12">
+        <div class="grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+          <div>
+            <p class="font-mono text-sm text-hot">Read the book first</p>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight">The Rails and Hotwire Codex</h2>
+            <p class="mt-2 text-slate-300">by <a href="https://radioactivetoy.tech" class="underline decoration-hot/60 hover:decoration-hot">Ayush Newatia</a></p>
+            <p class="mt-5 text-slate-300 max-w-2xl">
+              These skills are a companion to — not a replacement for — the book. It teaches you to build
+              <em>Piazza</em>, a neighbourhood-marketplace app, across <strong class="text-white">web, iOS, and Android</strong>
+              with Ruby on Rails and Hotwire: authentication from scratch, Turbo, Turbo Native, Stimulus,
+              Action Cable, full-text search, and more. Everything here assumes you understand <em>what</em> the
+              code does and <em>why</em> — the book is where that understanding comes from.
+            </p>
+            <p class="mt-4 text-sm text-slate-400 max-w-2xl">
+              The book targets <strong class="text-slate-200">Rails 7.1</strong>; this toolkit carries the same app
+              forward to <strong class="text-slate-200">Rails 8, Turbo 8, and Hotwire Native 1.x</strong>.
+            </p>
+          </div>
+          <div class="flex flex-col gap-3 lg:w-64">
+            <a href="https://ayushn21.gumroad.com/l/railshotwirecodex" class="rounded-lg bg-hot hover:bg-orange-600 px-6 py-4 text-center font-bold text-ink text-lg shadow-lg shadow-hot/30">
+              Buy it — $49
+              <span class="block text-xs font-normal text-ink/70 line-through">was $99</span>
+            </a>
+            <a href="https://railsandhotwirecodex.com/" class="rounded-lg border border-white/20 hover:bg-white/5 px-6 py-3 text-center font-medium text-white">
+              Free 3-chapter preview
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INSTALL ============ -->
+    <section id="install" class="border-y border-white/10 bg-slate950/50">
+      <div class="mx-auto max-w-6xl px-5 py-20">
+        <h2 class="text-3xl font-bold tracking-tight">Install &amp; use</h2>
+        <div class="mt-10 grid lg:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-semibold text-white">As a Claude Code plugin</h3>
+            <p class="mt-2 text-sm text-slate-400">Add the marketplace, then install — the 8 skills register automatically.</p>
+            <pre class="mt-4 rounded-lg border border-white/10 bg-ink p-4 text-[13px] font-mono text-slate-300 overflow-x-auto">/plugin marketplace add davidteren/hotwire-codex-skills
+/plugin install hotwire-codex-skills@hotwire-codex-skills-marketplace</pre>
+            <p class="mt-3 text-xs text-slate-400">Or symlink a single skill: <code class="font-mono">ln -s "$PWD"/skills/&lt;name&gt; ~/.claude/skills/</code></p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-white">As a standalone tool</h3>
+            <p class="mt-2 text-sm text-slate-400">The checkers run without Claude — point one at any Rails app. Exit non-zero on findings (CI-friendly).</p>
+            <pre class="mt-4 rounded-lg border border-white/10 bg-ink p-4 text-[13px] font-mono text-slate-300 overflow-x-auto">skills/rails-token-auth/scripts/audit_token_auth.sh path/to/app
+skills/stimulus-patterns/scripts/lint_stimulus.sh    path/to/app</pre>
+            <p class="mt-3 text-xs text-slate-400">Pure bash; three checkers need <code class="font-mono">python3</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACKNOWLEDGEMENTS ============ -->
+    <section class="mx-auto max-w-6xl px-5 py-20">
+      <h2 class="text-3xl font-bold tracking-tight">Acknowledgements</h2>
+      <p class="mt-4 text-slate-300 max-w-3xl">
+        All credit for the underlying material goes to
+        <a href="https://radioactivetoy.tech" class="underline decoration-rails/60 hover:decoration-rails">Ayush Newatia</a>,
+        author of <a href="https://railsandhotwirecodex.com/" class="underline decoration-rails/60 hover:decoration-rails">The Rails and Hotwire Codex</a>.
+        The <em>Piazza</em> app, its architecture, and the cross-platform approach these skills encode are his work —
+        this toolkit only distils and extends that into runnable, agent-usable form. Ayush kindly gave permission to
+        publish it. If these skills are useful to you, the right thanks is to
+        <a href="https://ayushn21.gumroad.com/l/railshotwirecodex" class="text-hot underline">buy the book</a> and read it.
+      </p>
+      <p class="mt-4 text-sm text-slate-400 max-w-3xl">
+        This project is an independent, community effort. It is <strong>not</strong> an official product of the book or
+        its author, and reuses none of the book's text or source code. The Piazza implementation repos are private out
+        of respect for the author's copyright.
+      </p>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-white/10">
+    <div class="mx-auto max-w-6xl px-5 py-10 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-400">
+      <p class="font-mono"><span class="text-rails">$</span> hotwire-codex-skills · built by <a href="https://github.com/davidteren" class="hover:text-white underline">David Teren</a></p>
+      <div class="flex gap-5">
+        <a href="https://github.com/davidteren/hotwire-codex-skills" class="hover:text-white">GitHub</a>
+        <a href="https://railsandhotwirecodex.com/" class="hover:text-white">The book</a>
+        <a href="https://radioactivetoy.tech" class="hover:text-white">Ayush Newatia</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

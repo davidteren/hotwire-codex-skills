@@ -1,2 +1,7 @@
 .DS_Store
 ._*
+
+# Local-only, never publish (wip/ holds private correspondence)
+wip/
+.idea/
+.qodo/

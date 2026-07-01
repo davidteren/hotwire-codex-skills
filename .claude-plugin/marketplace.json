@@ -1,13 +1,13 @@
 {
-  "name": "hotwire-rails-toolkit-marketplace",
+  "name": "hotwire-codex-skills-marketplace",
   "metadata": {
     "version": "1.2.1",
-    "description": "hotwire-rails-toolkit — skills + runnable checkers for Rails + Hotwire apps shipping to web/PWA, iOS, and Android."
+    "description": "hotwire-codex-skills — unofficial skillset inspired by The Rails and Hotwire Codex (Ayush Newatia); skills + runnable checkers for Rails + Hotwire apps shipping to web/PWA, iOS, and Android."
   },
   "owner": { "name": "David Teren" },
   "plugins": [
     {
-      "name": "hotwire-rails-toolkit",
+      "name": "hotwire-codex-skills",
       "source": "./",
       "description": "Eight verified skills with CI-runnable linters: Hotwire Native bridge + path config, Rails 7→8 upgrade (LazyRouteSet flake detector), Turbo 8 morphing, Turbo Frames (dangling-target / duplicate-id linter), targeted Turbo Streams (eavesdrop linter), token-backed session auth (security audit), and Turbo-safe Stimulus patterns."
     }

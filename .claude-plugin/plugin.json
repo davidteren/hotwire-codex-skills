@@ -1,8 +1,8 @@
 {
-  "name": "hotwire-rails-toolkit",
+  "name": "hotwire-codex-skills",
   "version": "1.2.1",
-  "description": "Skills and runnable checkers for Rails + Hotwire apps that ship to web/PWA, iOS, and Android. Unique vs other Rails plugins (which are LLM coders/reviewers): every skill ships a deterministic, CI-runnable linter that flags the failures that produce no error. Covers Hotwire Native bridge components and path config (cross-platform web+iOS+Android), Rails 7→8 upgrade with the LazyRouteSet route-test flake detector, Turbo 8 morphing, Turbo Frames with a dangling-target / duplicate-id linter, targeted Turbo Streams with a broadcast-eavesdropping linter, DB-backed token session auth with a security audit, and Turbo-safe Stimulus patterns.",
+  "description": "Unofficial skillset inspired by The Rails and Hotwire Codex (by Ayush Newatia), published with the author's permission. Skills and runnable checkers for Rails + Hotwire apps that ship to web/PWA, iOS, and Android. Unique vs other Rails plugins (which are LLM coders/reviewers): every skill ships a deterministic, CI-runnable linter that flags the failures that produce no error. Covers Hotwire Native bridge components and path config (cross-platform web+iOS+Android), Rails 7→8 upgrade with the LazyRouteSet route-test flake detector, Turbo 8 morphing, Turbo Frames with a dangling-target / duplicate-id linter, targeted Turbo Streams with a broadcast-eavesdropping linter, DB-backed token session auth with a security audit, and Turbo-safe Stimulus patterns.",
   "author": { "name": "David Teren" },
-  "homepage": "https://github.com/davidteren/hotwire-rails-toolkit",
+  "homepage": "https://github.com/davidteren/hotwire-codex-skills",
   "keywords": ["rails", "hotwire", "hotwire-native", "turbo", "stimulus", "linter", "checker", "security-audit", "rails-8"]
 }

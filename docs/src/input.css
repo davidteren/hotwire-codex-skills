@@ -1,0 +1,19 @@
+/* Source for docs/styles.css. Rebuild after editing index.html:
+   tailwindcss -i docs/src/input.css -o docs/styles.css --minify */
+@import "tailwindcss";
+@source "../index.html";
+
+@theme {
+  --color-rails: #C81E1E;
+  --color-rails-dark: #9b1414;
+  --color-rails-light: #EF5350; /* AA-contrast red (5.4:1) for text on the dark ink bg */
+  --color-hot: #F97316;
+  --color-ink: #0b0f14;
+  --color-slate950: #0b1220;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Respect an OS-level reduced-motion preference for anchor scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
