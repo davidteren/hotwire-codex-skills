@@ -75,3 +75,8 @@ tailwindcss -i docs/src/input.css -o docs/styles.css --minify   # tailwindcss v4
 
 `docs/.nojekyll` disables Jekyll processing. Committing the precompiled CSS (instead of
 a CI Node build) keeps the repo's no-deps philosophy.
+
+The Open Graph share image `docs/og.png` (1200x630, referenced by the `og:image` meta)
+is rendered from `docs/og-card.html` — open that file in a 1200x630 viewport and
+screenshot to `docs/og.png`. `og-card.html` is a design-time source (uses the Tailwind
+Play CDN); it is never served as a page.

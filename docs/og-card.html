@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+  Source for docs/og.png (the Open Graph share image). Not served as a page —
+  it is rendered to PNG at 1200x630. Regenerate after editing: open in a
+  1200x630 viewport and screenshot the #card element to docs/og.png.
+  Uses the Tailwind Play CDN (design-time only; never shipped to users).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>og-card</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: {
+        rails: { DEFAULT: '#C81E1E', dark: '#9b1414', light: '#EF5350' },
+        hot: '#F97316', ink: '#0b0f14',
+      }, fontFamily: { mono: ['ui-monospace','SFMono-Regular','Menlo','Consolas','monospace'] } } },
+    }
+  </script>
+  <style>
+    html,body { margin:0; padding:0; }
+    #card { width:1200px; height:630px; }
+  </style>
+</head>
+<body class="bg-neutral-800">
+  <div id="card" class="relative overflow-hidden bg-ink text-white flex flex-col justify-center px-20">
+    <div class="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-rails via-hot to-rails-light"></div>
+    <p class="font-mono text-2xl text-rails-light mb-6">$ hotwire-codex-skills</p>
+    <h1 class="text-8xl font-extrabold tracking-tight leading-[0.95]">The hard parts<br/>of Hotwire, <span class="bg-gradient-to-r from-rails-light to-hot bg-clip-text text-transparent">handled.</span></h1>
+    <p class="mt-8 text-3xl text-slate-300 max-w-3xl">8 Claude Code skills for Turbo, Stimulus &amp; Hotwire Native — web, iOS, Android.</p>
+    <p class="mt-10 font-mono text-xl text-slate-500">inspired by The Rails and Hotwire Codex · Ayush Newatia</p>
+  </div>
+</body>
+</html>
