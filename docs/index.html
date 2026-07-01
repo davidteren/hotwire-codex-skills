@@ -63,7 +63,7 @@
     <!-- ============ HERO ============ -->
     <section class="py-20 sm:py-28">
       <div class="mx-auto max-w-6xl px-6 grid lg:grid-cols-2 gap-8 items-center">
-        <div>
+        <div class="min-w-0">
           <p class="font-mono text-sm text-rails-light">8 skills · web · iOS · Android · Rails 8 · Turbo 8</p>
           <h1 class="mt-5 text-5xl sm:text-6xl font-semibold tracking-tight text-balance max-w-[24ch]">
             The hard parts of Hotwire, handled.
@@ -77,22 +77,22 @@
             <a href="#book" class="rounded-lg bg-white/10 hover:bg-white/15 px-4 py-3 text-base sm:text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rails-light">Read the book first &rarr;</a>
           </div>
         </div>
-        <div class="w-full max-w-lg lg:justify-self-end">
+        <div class="min-w-0 w-full max-w-lg lg:justify-self-end">
           <div class="rounded-xl bg-zinc-900 inset-ring inset-ring-white/10">
             <div class="flex items-center gap-2 border-b border-white/10 px-4 py-3">
               <span class="size-3 rounded-full bg-white/10"></span>
               <span class="size-3 rounded-full bg-white/10"></span>
               <span class="size-3 rounded-full bg-white/10"></span>
-              <p class="ml-2 font-mono text-xs text-zinc-500">audit_token_auth.sh</p>
+              <p class="ml-2 font-mono text-xs text-zinc-500">claude · turbo-streams-patterns</p>
             </div>
             <div class="p-4 font-mono text-[0.8125rem] leading-6 overflow-x-auto">
-              <p class="text-zinc-400"><span class="text-zinc-500">$</span> skills/rails-token-auth/scripts/audit_token_auth.sh app/</p>
-              <p class="mt-2 text-emerald-400">✓ tokens hashed at rest</p>
-              <p class="text-emerald-400">✓ cookies httponly + secure</p>
-              <p class="text-emerald-400">✓ no user enumeration on login</p>
-              <p class="text-rails-light">✗ channel streams without authorizing</p>
-              <p class="text-zinc-500 pl-5">app/channels/notifications_channel.rb:4</p>
-              <p class="mt-2 text-zinc-400">6 checks · 1 finding · exit 1</p>
+              <p class="text-zinc-400"><span class="text-zinc-500">$</span> claude "live room messages — members only"</p>
+              <p class="mt-2 text-hot">· skill: turbo-streams-patterns</p>
+              <p class="text-zinc-400">· authorized channel + signed stream name</p>
+              <p class="text-zinc-400">· broadcasts wired to dom_id targets</p>
+              <p class="mt-2 text-zinc-400"><span class="text-zinc-500">$</span> scripts/lint_turbo_streams.sh app/</p>
+              <p class="text-emerald-400">✓ no unauthorized streams · wiring clean</p>
+              <p class="mt-2 text-zinc-400">0 findings · exit 0</p>
             </div>
           </div>
         </div>
@@ -242,14 +242,14 @@
       <div class="mx-auto max-w-6xl px-6">
         <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-balance max-w-[35ch]">Install &amp; use</h2>
         <div class="mt-12 grid lg:grid-cols-2 gap-8">
-          <div>
+          <div class="min-w-0">
             <h3 class="font-semibold text-white">As a Claude Code plugin</h3>
             <p class="mt-2 text-base/7 sm:text-sm/6 text-zinc-400">Add the marketplace, then install — the 8 skills register automatically.</p>
             <pre class="mt-4 rounded-xl bg-zinc-900 inset-ring inset-ring-white/10 p-4 text-[0.8125rem] leading-6 font-mono text-zinc-300 overflow-x-auto">/plugin marketplace add davidteren/hotwire-codex-skills
 /plugin install hotwire-codex-skills@hotwire-codex-skills-marketplace</pre>
             <p class="mt-3 text-base/7 sm:text-sm/6 text-zinc-500">Or symlink a single skill: <code class="font-mono text-zinc-400">ln -s "$PWD"/skills/&lt;name&gt; ~/.claude/skills/</code></p>
           </div>
-          <div>
+          <div class="min-w-0">
             <h3 class="font-semibold text-white">As a standalone tool</h3>
             <p class="mt-2 text-base/7 sm:text-sm/6 text-zinc-400">The checkers run without Claude — point one at any Rails app. Exit non-zero on findings (CI-friendly).</p>
             <pre class="mt-4 rounded-xl bg-zinc-900 inset-ring inset-ring-white/10 p-4 text-[0.8125rem] leading-6 font-mono text-zinc-300 overflow-x-auto">skills/rails-token-auth/scripts/audit_token_auth.sh path/to/app
