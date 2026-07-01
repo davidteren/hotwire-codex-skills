@@ -1,5 +1,7 @@
 # hotwire-codex-skills
 
+[![hotwire-codex-skills — The hard parts of Hotwire, handled.](docs/og.png)](https://davidteren.github.io/hotwire-codex-skills/)
+
 **An unofficial skillset inspired by [*The Rails and Hotwire Codex*](https://railsandhotwirecodex.com/)
 by [Ayush Newatia](https://radioactivetoy.tech) — published with his permission.**
 
