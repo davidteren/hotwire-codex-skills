@@ -1,0 +1,63 @@
+README.md
+  s_e52626202b9a8b::t_1a091d9bf850c9 1-4,9,22-29,31-37
+  s_e52626202b9a8b::t_888467177af3d6 30
+  s_e52626202b9a8b::t_0de066d6045e08 144-149
+  s_e52626202b9a8b::t_18de501c87fcfc 115-127
+  s_e52626202b9a8b::t_98baa74ca9f7a6 21
+  s_e52626202b9a8b::t_d8ff80f30532e7 10-13
+  s_e52626202b9a8b::t_7faf46a24cb05f 130-133
+  s_e52626202b9a8b::t_c298307d0a287a 98-101
+  s_e52626202b9a8b::t_daa4f6206e912a 38
+AGENTS.md
+  s_e52626202b9a8b::t_e826c1726872e7 1,6-8
+  s_e52626202b9a8b::t_74614f5117ca28 24
+  s_e52626202b9a8b::t_db913a25f9ed0e 64-77
+  s_e52626202b9a8b::t_803b0bd3a2f5d4 31-34,39-40,42,44-49
+  s_e52626202b9a8b::t_cdcb39d8e450b1 9
+LICENSE
+  s_e52626202b9a8b::t_a7477894c32a61 1-21
+.claude-plugin/marketplace.json
+  s_e52626202b9a8b::t_6fe564c2c4fde4 2,5,10
+.claude-plugin/plugin.json
+  s_e52626202b9a8b::t_a56cba7a18a08d 2,4,6
+docs/src/input.css
+  s_e52626202b9a8b::t_b888f507c5e3b6 1-8,10-13,19
+  s_e52626202b9a8b::t_831688dde9f4bd 9,14-18
+.gitignore
+  s_e52626202b9a8b::t_193ab90bc67723 3-7
+docs/styles.css
+  s_e52626202b9a8b::t_30ddf8ad820ccc 2
+  s_e52626202b9a8b::t_e76ff7eebdbb7b 1
+docs/index.html
+  s_e52626202b9a8b::t_c64baa5b0eae3e 21,23,31-41
+  s_e52626202b9a8b::t_105f129f8df18e 63
+  s_e52626202b9a8b::t_b4f82a5ecdcade 75,80,85,90,95,100,105,110
+  s_e52626202b9a8b::t_77b77cc0f1833b 180-182,184
+  s_e52626202b9a8b::t_7a0b88cff556c7 1-5,8-9,11-12,14-20,22,24-30,42-46,67-74,76-79,81-84,86-89,91-94,96-99,101-104,106-109,111-126,136,138-145,147-179,185-190,192-198,200-208,210-229
+  s_e52626202b9a8b::t_2bad9355cd5e5d 127-135
+  s_e52626202b9a8b::t_c8416defaf2468 13
+  s_e52626202b9a8b::t_6ab7b1355236d0 52,55,58-59
+  s_e52626202b9a8b::t_c1890544371041 183
+  s_e52626202b9a8b::t_bdd7aa858a28f9 199
+  s_e52626202b9a8b::t_384b5e0cb9b903 47-48,51,53-54,56-57,60-62,64-66
+  s_e52626202b9a8b::t_8af793f648a76b 146
+  s_e52626202b9a8b::t_ee6b51f846d1de 6-7,10
+  s_e52626202b9a8b::t_bfb491b8c8e6de 49-50
+  s_e52626202b9a8b::t_fd572d0874fede 137,191,209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.6",
+  "base_commit_sha": "de7dfaadea17ede4f448f1bedbfb118e2648ae4a",
+  "prompts": {},
+  "sessions": {
+    "s_e52626202b9a8b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c686b479-f9b4-4ecf-90f8-2f0968109bec",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
