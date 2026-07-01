@@ -1,0 +1,25 @@
+docs/styles.css
+  s_0cdf54c900864a::t_5ac855cc01bb84 2
+docs/index.html
+  s_0cdf54c900864a::t_de1a6ba1c8520f 27,30,32,35-37,40,45,50,64-97,103-153,158-201,206-234,241-244,247-248,250,254-255,257,264-281,287-288,290-292
+docs/src/input.css
+  s_0cdf54c900864a::t_ee4a139467d874 9,11-13
+docs/og-card.html
+  s_0cdf54c900864a::t_ea13e5cc181f47 12-13,18-23,32-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.6",
+  "base_commit_sha": "2adb3e3bcffcf46237b95716efbec380b0f4c86d",
+  "prompts": {},
+  "sessions": {
+    "s_0cdf54c900864a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c12a4713-4eff-4c97-80b2-6c049b6236cc",
+        "model": "claude-fable-5"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
