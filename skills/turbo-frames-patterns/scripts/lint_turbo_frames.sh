@@ -113,12 +113,13 @@ end
 
 def resolve(path)
   # Rails partials are _name.<format>.<handler> (e.g. _post.html.erb), so match the
-  # leading _name.* and keep the first that ends in a handler we scan.
-  d, b = File.split(path)
-  Dir.glob(File.join(VIEWS, d, "_#{b}.*")).sort.each do |cand|
-    return cand if EXTS.any? { |e| cand.end_with?(e) }
-  end
-  nil
+  # leading _name.* and keep the first that ends in a handler we scan. File.dirname
+  # returns "." for a dir-less partial ("post"); collapse it so the globbed path has
+  # no "/./" segment and still matches the keys in `texts` (else the lookup is nil).
+  d = File.dirname(path)
+  b = File.basename(path)
+  dir = d == "." ? VIEWS : File.join(VIEWS, d)
+  Dir.glob(File.join(dir, "_#{b}.*")).sort.find { |cand| cand.end_with?(*EXTS) }
 end
 
 checked = 0

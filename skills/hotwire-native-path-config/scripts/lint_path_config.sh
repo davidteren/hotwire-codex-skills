@@ -29,7 +29,15 @@ VALID_MODAL_STYLE = %w[large medium full page_sheet form_sheet].to_set
 $fail = 0
 def flag(m) $fail = 1; puts "  ⚠️  #{m}" end
 def ok(m) puts "  ✓ #{m}" end
-def rep(x) x.is_a?(String) ? "'#{x}'" : x.inspect end            # python-repr-style
+def rep(x)                                                       # python-repr-style
+  case x
+  when String then "'#{x}'"
+  when true   then "True"
+  when false  then "False"
+  when nil    then "None"
+  else x.inspect
+  end
+end
 def lst(s) "[" + s.sort.map { |x| "'#{x}'" }.join(", ") + "]" end # python-list-style
 
 CATCH_ALL = [".*", "/.*", "^.*$", "^/.*"].freeze
