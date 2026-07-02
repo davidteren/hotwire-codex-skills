@@ -51,5 +51,5 @@ Flags: `this.xTarget`/`xValue`/`xClass` used but not declared in `static
 targets`/`values`/`classes` (runtime errors); `connect()` that registers a
 listener/timer/observer with **no `disconnect()`** (leak/double-fire); a controller
 file missing from the `index.js` manifest (never connects). Heuristic regex scan
-(needs `python3`); names its ceiling. Verified: clean on all 7 Piazza controllers,
+(needs `ruby`); names its ceiling. Verified: clean on all 7 Piazza controllers,
 flags a synthetic broken one on every check.

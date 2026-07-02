@@ -74,4 +74,4 @@ regex patterns **compile**; property keys/values are in the 1.x schema; flags th
 `presentation: "modal"` beta-ism; flags unanchored short patterns (`/new` also matches
 `/renew` → use `/new$`); checks the catch-all is first. `--compare` normalizes anchors
 and reports paths handled on one platform but not the other (heuristic, names its
-ceiling). Needs `python3`.
+ceiling). Needs `ruby`.

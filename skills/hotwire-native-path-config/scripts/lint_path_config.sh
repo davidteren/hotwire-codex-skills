@@ -6,109 +6,151 @@
 #   lint_path_config.sh <config.json> [config2.json]   # validate one or two
 #   lint_path_config.sh --compare <iosA.json> <androidB.json>
 #
-# Exit: 0 = clean, 1 = problems, 2 = bad usage / no python3.
+# Exit: 0 = clean, 1 = problems, 2 = bad usage / no ruby.
 set -uo pipefail
-command -v python3 >/dev/null || { echo "needs python3" >&2; exit 2; }
+command -v ruby >/dev/null || { echo "needs ruby" >&2; exit 2; }
 
 [ $# -ge 1 ] || { echo "usage: $0 <config.json> [config2.json] | --compare A B" >&2; exit 2; }
 
-python3 - "$@" <<'PY'
-import json, re, sys
+ruby - "$@" <<'RUBY'
+require 'json'
+require 'set'
 
-VALID_CONTEXT = {"default", "modal"}
-VALID_PRESENTATION = {"default","push","pop","replace","replace_root","clear_all","refresh","none"}
-KNOWN_PROPS = {
-    "context","presentation","pull_to_refresh_enabled","animated",     # universal
-    "uri","fallback_uri","title",                                       # android
-    "view_controller","modal_style","modal_dismiss_gesture_enabled",    # ios
-}
-VALID_MODAL_STYLE = {"large","medium","full","page_sheet","form_sheet"}
+VALID_CONTEXT = %w[default modal].to_set
+VALID_PRESENTATION = %w[default push pop replace replace_root clear_all refresh none].to_set
+KNOWN_PROPS = %w[
+  context presentation pull_to_refresh_enabled animated
+  uri fallback_uri title
+  view_controller modal_style modal_dismiss_gesture_enabled
+].to_set
+# universal / android / ios (same grouping as the 1.x docs)
+VALID_MODAL_STYLE = %w[large medium full page_sheet form_sheet].to_set
 
-fail = 0
-def warn(m):
-    global fail; print(f"  ⚠️  {m}"); fail = 1
-def ok(m): print(f"  ✓ {m}")
+$fail = 0
+def flag(m) $fail = 1; puts "  ⚠️  #{m}" end
+def ok(m) puts "  ✓ #{m}" end
+def rep(x)                                                       # python-repr-style
+  case x
+  when String then "'#{x}'"
+  when true   then "True"
+  when false  then "False"
+  when nil    then "None"
+  else x.inspect
+  end
+end
+def lst(s) "[" + s.sort.map { |x| "'#{x}'" }.join(", ") + "]" end # python-list-style
 
-def load(path):
-    with open(path) as f:
-        return json.load(f)
+CATCH_ALL = [".*", "/.*", "^.*$", "^/.*"].freeze
 
-def validate(path, cfg):
-    print(f"Validating {path}")
-    if not isinstance(cfg, dict):
-        warn("top level is not an object"); return set()
-    if "rules" not in cfg or not isinstance(cfg["rules"], list) or not cfg["rules"]:
-        warn("missing or empty 'rules' array"); return set()
-    if "settings" in cfg and not isinstance(cfg["settings"], dict):
-        warn("'settings' is not an object")
-    all_patterns = set()
-    catchall_first = False
-    for i, rule in enumerate(cfg["rules"]):
-        where = f"rule[{i}]"
-        if not isinstance(rule, dict) or "patterns" not in rule or "properties" not in rule:
-            warn(f"{where}: each rule needs 'patterns' and 'properties'"); continue
-        pats, props = rule["patterns"], rule["properties"]
-        if not isinstance(pats, list) or not pats:
-            warn(f"{where}: 'patterns' must be a non-empty array")
-        for p in (pats if isinstance(pats, list) else []):
-            all_patterns.add(p)
-            try: re.compile(p)
-            except re.error as e: warn(f"{where}: pattern {p!r} is not valid regex ({e})")
-            # footgun: unanchored short path segment
-            if re.fullmatch(r"/[a-z_]+", p):
-                warn(f"{where}: pattern {p!r} is unanchored — '/new' also matches '/renew'; use '{p}$'")
-            if i == 0 and p in (".*","/.*","^.*$","^/.*"): catchall_first = True
-        if not isinstance(props, dict):
-            warn(f"{where}: 'properties' must be an object"); continue
-        for k, v in props.items():
-            if k not in KNOWN_PROPS:
-                warn(f"{where}: unknown property {k!r} (typo? not in the 1.x schema)")
-            if k == "context" and v not in VALID_CONTEXT:
-                warn(f"{where}: context={v!r} invalid (use {sorted(VALID_CONTEXT)})")
-            if k == "presentation":
-                if v == "modal":
-                    warn(f"{where}: presentation='modal' is a Strada-beta-ism — in 1.x use context='modal'")
-                elif v not in VALID_PRESENTATION:
-                    warn(f"{where}: presentation={v!r} invalid (use {sorted(VALID_PRESENTATION)})")
-            if k == "modal_style" and v not in VALID_MODAL_STYLE:
-                warn(f"{where}: modal_style={v!r} invalid")
-        # android needs a uri on each navigable rule
-    if catchall_first:
-        ok("catch-all rule is first (specific rules below override it)")
-    else:
-        # not fatal, but the most common ordering mistake
-        first_pats = cfg["rules"][0].get("patterns", [])
-        if not any(p in (".*","/.*","^.*$","^/.*") for p in first_pats):
-            warn("first rule is not a broad catch-all — rules are matched top-to-bottom with LATER winning; confirm ordering is intentional")
-    if fail == 0:
-        ok("schema valid")
-    return all_patterns
+def load_cfg(path)
+  JSON.parse(File.read(path))
+end
 
-args = sys.argv[1:]
-if args[0] == "--compare":
-    if len(args) != 3:
-        print("usage: --compare A B", file=sys.stderr); sys.exit(2)
-    a, b = args[1], args[2]
-    pa = validate(a, load(a)); print()
-    pb = validate(b, load(b)); print()
-    print("Cross-config path coverage (anchors normalized — ceiling: not full semantic regex equivalence) —")
-    def norm(p):
-        p = p.strip()
-        if p.startswith("^"): p = p[1:]
-        if p.endswith("$"): p = p[:-1]
-        p = p.rstrip("*").strip("/")
-        return "<catch-all>" if p in ("", ".", ".*") else p
-    na = {norm(p): p for p in pa}; nb = {norm(p): p for p in pb}
-    only_a = sorted(set(na) - set(nb)); only_b = sorted(set(nb) - set(na))
-    if only_a:
-        for k in only_a: warn(f"path {na[k]!r} handled in {a} but not {b} — platforms navigate it differently")
-    if only_b:
-        for k in only_b: warn(f"path {nb[k]!r} handled in {b} but not {a} — platforms navigate it differently")
-    if not only_a and not only_b: ok("both configs cover the same paths (after anchor normalization)")
-else:
-    for path in args:
-        validate(path, load(path)); print()
+def validate(path, cfg)
+  puts "Validating #{path}"
+  unless cfg.is_a?(Hash)
+    flag("top level is not an object"); return Set.new
+  end
+  if !cfg.key?("rules") || !cfg["rules"].is_a?(Array) || cfg["rules"].empty?
+    flag("missing or empty 'rules' array"); return Set.new
+  end
+  if cfg.key?("settings") && !cfg["settings"].is_a?(Hash)
+    flag("'settings' is not an object")
+  end
+  all_patterns = Set.new
+  catchall_first = false
+  cfg["rules"].each_with_index do |rule, i|
+    where = "rule[#{i}]"
+    unless rule.is_a?(Hash) && rule.key?("patterns") && rule.key?("properties")
+      flag("#{where}: each rule needs 'patterns' and 'properties'"); next
+    end
+    pats = rule["patterns"]; props = rule["properties"]
+    unless pats.is_a?(Array) && !pats.empty?
+      flag("#{where}: 'patterns' must be a non-empty array")
+    end
+    (pats.is_a?(Array) ? pats : []).each do |p|
+      all_patterns << p
+      begin
+        Regexp.new(p)
+      rescue RegexpError => e
+        flag("#{where}: pattern #{rep(p)} is not valid regex (#{e})")
+      end
+      # footgun: unanchored short path segment
+      if p.match?(%r{\A/[a-z_]+\z})
+        flag("#{where}: pattern #{rep(p)} is unanchored — '/new' also matches '/renew'; use '#{p}$'")
+      end
+      catchall_first = true if i.zero? && CATCH_ALL.include?(p)
+    end
+    unless props.is_a?(Hash)
+      flag("#{where}: 'properties' must be an object"); next
+    end
+    props.each do |k, v|
+      unless KNOWN_PROPS.include?(k)
+        flag("#{where}: unknown property #{rep(k)} (typo? not in the 1.x schema)")
+      end
+      if k == "context" && !VALID_CONTEXT.include?(v)
+        flag("#{where}: context=#{rep(v)} invalid (use #{lst(VALID_CONTEXT)})")
+      end
+      if k == "presentation"
+        if v == "modal"
+          flag("#{where}: presentation='modal' is a Strada-beta-ism — in 1.x use context='modal'")
+        elsif !VALID_PRESENTATION.include?(v)
+          flag("#{where}: presentation=#{rep(v)} invalid (use #{lst(VALID_PRESENTATION)})")
+        end
+      end
+      if k == "modal_style" && !VALID_MODAL_STYLE.include?(v)
+        flag("#{where}: modal_style=#{rep(v)} invalid")
+      end
+    end
+    # android needs a uri on each navigable rule
+  end
+  if catchall_first
+    ok("catch-all rule is first (specific rules below override it)")
+  else
+    # not fatal, but the most common ordering mistake
+    rule0 = cfg["rules"][0]
+    first_pats = rule0.is_a?(Hash) ? (rule0["patterns"] || []) : []
+    unless first_pats.is_a?(Array) && first_pats.any? { |p| CATCH_ALL.include?(p) }
+      flag("first rule is not a broad catch-all — rules are matched top-to-bottom with LATER winning; confirm ordering is intentional")
+    end
+  end
+  if $fail == 0
+    ok("schema valid")
+  end
+  all_patterns
+end
 
-print("✅ path config OK" if fail == 0 else "❌ path config issues found")
-sys.exit(fail)
-PY
+args = ARGV
+if args[0] == "--compare"
+  if args.length != 3
+    $stderr.puts "usage: --compare A B"; exit 2
+  end
+  a, b = args[1], args[2]
+  pa = validate(a, load_cfg(a)); puts
+  pb = validate(b, load_cfg(b)); puts
+  puts "Cross-config path coverage (anchors normalized — ceiling: not full semantic regex equivalence) —"
+  norm = lambda do |p|
+    p = p.strip
+    p = p[1..]    if p.start_with?("^")
+    p = p[0..-2]  if p.end_with?("$")
+    p = p.sub(/\*+\z/, "").gsub(%r{\A/+|/+\z}, "")
+    ["", ".", ".*"].include?(p) ? "<catch-all>" : p
+  end
+  na = pa.each_with_object({}) { |p, h| h[norm.call(p)] = p }
+  nb = pb.each_with_object({}) { |p, h| h[norm.call(p)] = p }
+  only_a = (na.keys - nb.keys).sort
+  only_b = (nb.keys - na.keys).sort
+  only_a.each { |k| flag("path #{rep(na[k])} handled in #{a} but not #{b} — platforms navigate it differently") }
+  only_b.each { |k| flag("path #{rep(nb[k])} handled in #{b} but not #{a} — platforms navigate it differently") }
+  if only_a.empty? && only_b.empty?
+    ok("both configs cover the same paths (after anchor normalization)")
+  end
+else
+  args.each do |path|
+    validate(path, load_cfg(path)); puts
+  end
+end
+
+puts($fail == 0 ? "✅ path config OK" : "❌ path config issues found")
+exit $fail
+RUBY

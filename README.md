@@ -73,7 +73,7 @@ skills/<name>/
   SKILL.md          # frontmatter (name + description trigger) + how to use
   references/*.md   # the contract / conventions explainer, cited to path:line
   templates/*.tmpl  # code templates (placeholder tokens like __NAME__)
-  scripts/*.sh      # runnable generators + linters (plain bash; python3 for 3 of them)
+  scripts/*.sh      # runnable generators + linters (plain bash; ruby for 3 of them)
 ```
 
 ## Using it
@@ -88,7 +88,7 @@ skills/stimulus-patterns/scripts/lint_stimulus.sh          path/to/rails-app
 skills/hotwire-native-path-config/scripts/lint_path_config.sh --compare ios.json android.json
 ```
 
-Pure bash; three checkers (`lint_path_config`, `lint_stimulus`, `lint_turbo_frames`) need `python3`. Every
+Pure bash; three checkers (`lint_path_config`, `lint_stimulus`, `lint_turbo_frames`) need `ruby` (any Rails machine has it). Every
 checker exits non-zero on findings (CI-friendly) and prints the fix or a reference
 pointer.
 

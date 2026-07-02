@@ -21,14 +21,14 @@ skills/<name>/
   SKILL.md          # YAML frontmatter: name + description (the trigger). Then usage.
   references/*.md    # the contract/conventions reference (traceable to path:line)
   templates/*.tmpl   # code templates; placeholder tokens like __COMPONENT_NAME__
-  scripts/*.sh       # runnable bash (generators + linters); 3 linters also need python3
+  scripts/*.sh       # runnable bash (generators + linters); 3 linters also need ruby
 ```
 
 ## Conventions for adding/editing skills
 
 - **Ground every claim in real code.** A reference statement should trace to a
   `path:line` in one of the app repos. No invented APIs.
-- **Scripts are plain bash** (no deps beyond bash; 3 linters also require `python3`),
+- **Scripts are plain bash** (no deps beyond bash; 3 linters also require `ruby`),
   and must `set -euo pipefail` (or document why not). A generator must refuse to
   overwrite. A linter must exit non-zero on drift and **name its ceiling** (e.g.
   "heuristic scan, not a parser").

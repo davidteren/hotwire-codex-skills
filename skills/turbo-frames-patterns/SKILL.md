@@ -52,6 +52,6 @@ targets a frame id with no `turbo_frame_tag` / `<turbo-frame id>` defined in any
 DOM ids (use `dom_id`). Reserved targets (`_top`/`_self`) and dynamic ids
 (`dom_id(...)`, interpolation, `<%= %>`) are never flagged — when either side is dynamic
 it can't be resolved statically, so it's skipped and reported as such. Heuristic regex
-scan (needs `python3`), not an ERB/HTML parser — names its ceiling. Verified: clean on
+scan (needs `ruby`), not an ERB/HTML parser — names its ceiling. Verified: clean on
 miela_app (6 real frames, all targets resolve, collection partials use `dom_id`), flags a
 synthetic dangling-target + duplicate-id app.
