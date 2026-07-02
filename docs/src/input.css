@@ -13,6 +13,17 @@
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
+/* One consistent keyboard-focus indicator for every link and the mobile menu
+   toggle — so focus visibility can't drift per-control. */
+@layer base {
+  a:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--color-rails-light);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
 /* Respect an OS-level reduced-motion preference for anchor scrolling. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

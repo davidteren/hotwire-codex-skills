@@ -34,7 +34,7 @@
   <!-- ============ NAV ============ -->
   <header class="sticky top-0 z-40 backdrop-blur bg-zinc-950/80 border-b border-white/10">
     <div class="mx-auto max-w-6xl px-6 h-14 flex items-center justify-between">
-      <a href="#top" class="font-mono font-medium tracking-tight text-zinc-100" aria-label="Homepage">
+      <a href="#top" class="font-mono font-medium tracking-tight text-zinc-100">
         <span class="text-rails-light">$</span> hotwire-codex-skills
       </a>
       <nav class="hidden sm:flex items-center gap-6 text-sm text-zinc-400">
@@ -42,7 +42,7 @@
         <a href="#checkers" class="hover:text-white">Checkers</a>
         <a href="#book" class="hover:text-white">The book</a>
         <a href="#install" class="hover:text-white">Install</a>
-        <a href="https://github.com/davidteren/hotwire-codex-skills" class="rounded-md bg-white/10 hover:bg-white/15 px-3 py-1.5 font-medium text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rails-light">GitHub</a>
+        <a href="https://github.com/davidteren/hotwire-codex-skills" class="rounded-md bg-white/10 hover:bg-white/15 px-3 py-1.5 font-medium text-white">GitHub</a>
       </nav>
       <!-- mobile nav: native disclosure, no JS -->
       <details class="sm:hidden relative">
@@ -73,8 +73,8 @@
             Turbo, Stimulus, and Hotwire&nbsp;Native — one codebase, shipped to web, iOS, and Android.
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#install" class="rounded-lg bg-rails hover:bg-rails-dark px-4 py-3 text-base sm:text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rails-light">Install the plugin</a>
-            <a href="#book" class="rounded-lg bg-white/10 hover:bg-white/15 px-4 py-3 text-base sm:text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rails-light">Read the book first &rarr;</a>
+            <a href="#install" class="rounded-lg bg-rails hover:bg-rails-dark px-4 py-3 text-base sm:text-sm font-semibold text-white">Install the plugin</a>
+            <a href="#book" class="rounded-lg bg-white/10 hover:bg-white/15 px-4 py-3 text-base sm:text-sm font-semibold text-white">Read the book first &rarr;</a>
           </div>
         </div>
         <div class="min-w-0 w-full max-w-lg lg:justify-self-end">
@@ -83,7 +83,7 @@
               <span class="size-3 rounded-full bg-white/10"></span>
               <span class="size-3 rounded-full bg-white/10"></span>
               <span class="size-3 rounded-full bg-white/10"></span>
-              <p class="ml-2 font-mono text-xs text-zinc-500">claude · turbo-streams-patterns</p>
+              <p class="ml-2 font-mono text-xs text-zinc-400">claude · turbo-streams-patterns</p>
             </div>
             <div class="p-4 font-mono text-[0.8125rem] leading-6 overflow-x-auto">
               <p class="text-zinc-400"><span class="text-zinc-500">$</span> claude "live room messages — members only"</p>
@@ -198,7 +198,7 @@
             <dd class="mt-2 text-base/7 sm:text-sm/6 text-zinc-400">Auth tokens stored unhashed, or a plain cookie.</dd>
           </div>
         </dl>
-        <p class="mt-10 text-base/7 sm:text-sm/6 text-zinc-500 max-w-[64ch]">Honest about limits: the checkers are heuristic text scans, not parsers — each says so in its output. A clean run is a gate, not a proof. Review custom logic.</p>
+        <p class="mt-10 text-base/7 sm:text-sm/6 text-zinc-400 max-w-[64ch]">Honest about limits: the checkers are heuristic text scans, not parsers — each says so in its output. A clean run is a gate, not a proof. Review custom logic.</p>
       </div>
     </section>
 
@@ -224,7 +224,7 @@
               </p>
             </div>
             <div class="flex flex-col gap-3 lg:w-64">
-              <a href="https://ayushn21.gumroad.com/l/railshotwirecodex" class="rounded-lg bg-white/10 hover:bg-white/15 px-4 py-3 text-center font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rails-light">
+              <a href="https://ayushn21.gumroad.com/l/railshotwirecodex" class="rounded-lg bg-white/10 hover:bg-white/15 px-4 py-3 text-center font-semibold text-white">
                 Buy it — $49
                 <span class="block font-mono font-normal text-hot">was <s>$99</s></span>
               </a>
@@ -247,14 +247,14 @@
             <p class="mt-2 text-base/7 sm:text-sm/6 text-zinc-400">Add the marketplace, then install — the 8 skills register automatically.</p>
             <pre class="mt-4 rounded-xl bg-zinc-900 inset-ring inset-ring-white/10 p-4 text-[0.8125rem] leading-6 font-mono text-zinc-300 overflow-x-auto">/plugin marketplace add davidteren/hotwire-codex-skills
 /plugin install hotwire-codex-skills@hotwire-codex-skills-marketplace</pre>
-            <p class="mt-3 text-base/7 sm:text-sm/6 text-zinc-500">Or symlink a single skill: <code class="font-mono text-zinc-400">ln -s "$PWD"/skills/&lt;name&gt; ~/.claude/skills/</code></p>
+            <p class="mt-3 text-base/7 sm:text-sm/6 text-zinc-400">Or symlink a single skill: <code class="font-mono text-zinc-400">ln -s "$PWD"/skills/&lt;name&gt; ~/.claude/skills/</code></p>
           </div>
           <div class="min-w-0">
             <h3 class="font-semibold text-white">As a standalone tool</h3>
             <p class="mt-2 text-base/7 sm:text-sm/6 text-zinc-400">The checkers run without Claude — point one at any Rails app. Exit non-zero on findings (CI-friendly).</p>
             <pre class="mt-4 rounded-xl bg-zinc-900 inset-ring inset-ring-white/10 p-4 text-[0.8125rem] leading-6 font-mono text-zinc-300 overflow-x-auto">skills/rails-token-auth/scripts/audit_token_auth.sh path/to/app
 skills/stimulus-patterns/scripts/lint_stimulus.sh    path/to/app</pre>
-            <p class="mt-3 text-base/7 sm:text-sm/6 text-zinc-500">Pure bash; three checkers need <code class="font-mono text-zinc-400">python3</code>.</p>
+            <p class="mt-3 text-base/7 sm:text-sm/6 text-zinc-400">Pure bash; three checkers need <code class="font-mono text-zinc-400">python3</code>.</p>
           </div>
         </div>
       </div>
@@ -273,7 +273,7 @@ skills/stimulus-patterns/scripts/lint_stimulus.sh    path/to/app</pre>
           publish it. If these skills are useful to you, the right thanks is to
           <a href="https://ayushn21.gumroad.com/l/railshotwirecodex" class="text-hot underline">buy the book</a> and read it.
         </p>
-        <p class="mt-4 text-base/7 sm:text-sm/6 text-zinc-500 text-pretty max-w-[64ch]">
+        <p class="mt-4 text-base/7 sm:text-sm/6 text-zinc-400 text-pretty max-w-[64ch]">
           This project is an independent, community effort. It is <strong>not</strong> an official product of the book or
           its author, and reuses none of the book's text or source code. The Piazza implementation repos are private out
           of respect for the author's copyright.
@@ -285,11 +285,11 @@ skills/stimulus-patterns/scripts/lint_stimulus.sh    path/to/app</pre>
   <!-- ============ FOOTER ============ -->
   <footer class="border-t border-white/10">
     <div class="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row justify-between gap-4 text-sm text-zinc-400">
-      <p class="font-mono"><span class="text-rails-light">$</span> hotwire-codex-skills · built by <a href="https://github.com/davidteren" class="font-normal hover:text-white underline">David Teren</a></p>
+      <p class="font-mono"><span class="text-rails-light">$</span> hotwire-codex-skills · built by <a href="https://github.com/davidteren" class="hover:text-white underline">David Teren</a></p>
       <div class="flex gap-5">
-        <a href="https://github.com/davidteren/hotwire-codex-skills" class="font-normal hover:text-white">GitHub</a>
-        <a href="https://railsandhotwirecodex.com/" class="font-normal hover:text-white">The book</a>
-        <a href="https://radioactivetoy.tech" class="font-normal hover:text-white">Ayush Newatia</a>
+        <a href="https://github.com/davidteren/hotwire-codex-skills" class="hover:text-white">GitHub</a>
+        <a href="https://railsandhotwirecodex.com/" class="hover:text-white">The book</a>
+        <a href="https://radioactivetoy.tech" class="hover:text-white">Ayush Newatia</a>
       </div>
     </div>
   </footer>
