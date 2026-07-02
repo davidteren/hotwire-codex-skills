@@ -17,6 +17,8 @@ skills/stimulus-patterns/scripts/lint_stimulus.sh
   s_0cdf54c900864a::t_5aaf5b4f813151 9,12,20-23,27-30,32-53,55-60,62-64,66-69,72-74,76-80,82-89,91-97,99-106,108-114
 skills/turbo-frames-patterns/SKILL.md
   s_0cdf54c900864a::t_72758fe4201b28 55
+docs/index.html
+  s_0cdf54c900864a::t_5ab3fb3f492d9a 257
 ---
 {
   "schema_version": "authorship/3.0.0",
