@@ -1,0 +1,19 @@
+.github/dependabot.yml
+  s_0cdf54c900864a::t_53d82825af2fa8 1-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "9210b0180e3b01358a63bc654078457c003abca8",
+  "prompts": {},
+  "sessions": {
+    "s_0cdf54c900864a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c12a4713-4eff-4c97-80b2-6c049b6236cc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
