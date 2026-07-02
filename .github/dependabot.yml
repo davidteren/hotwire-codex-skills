@@ -1,0 +1,20 @@
+# Dependabot configuration.
+# This repo ships skills, templates, and shell/Ruby checker scripts — it has no
+# Gemfile or package.json, so there are no bundler/npm ecosystems to track yet.
+# GitHub Actions is configured so any future workflow dependencies stay current;
+# add a `bundler` or `npm` entry here if a manifest is introduced later.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    labels:
+      - "dependencies"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
