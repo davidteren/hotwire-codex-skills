@@ -1,0 +1,27 @@
+docs/src/input.css
+  s_0cdf54c900864a::t_28e4528088aff8 16-26
+docs/index.html
+  s_0cdf54c900864a::t_1ec28abc07c84d 86
+  s_0cdf54c900864a::t_01451571059e1d 45,76-77,227
+  s_0cdf54c900864a::t_d2f6c909523d1b 201,250,257,276
+  s_0cdf54c900864a::t_69f72f4d130dad 288,290-292
+  s_0cdf54c900864a::t_1d3e9dbd23a971 37
+docs/styles.css
+  s_0cdf54c900864a::t_78c2e7a913f51d 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "27c91ef26152590a8f2266471295cf748a466c07",
+  "prompts": {},
+  "sessions": {
+    "s_0cdf54c900864a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c12a4713-4eff-4c97-80b2-6c049b6236cc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
